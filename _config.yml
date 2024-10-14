@@ -24,17 +24,17 @@ author:
   avatar           : "profile.png"
   name             : "Ali Daneshpour"
   pronouns         : # example: "he/him"  
-  bio              : "Short biography for the left-hand sidebar"
+  bio              : "Ph.D. Student in Computer Science (Artificial Intelligence) at Amirkabir University of Technology"
   location         : "Tehran, Iran"
-  employer         : "amirkabir university of technology"
+  employer         : "Amirkabir University of Technology"
   uri              : # URL
   email            : "Alidaneshpour@aut.ac.ir" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  googlescholar    : "https://scholar.google.com/citations?hl=en&user=ElqQdEUAAAAJ"
   impactstory      : # URL
-  orcid            : "http://orcid.org/yourorcidurl"
+  orcid            : "http://orcid.org/my-orcid?orcid=0009-0002-3134-6664"
   semantic         : # URL
   pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   researchgate     : # URL
