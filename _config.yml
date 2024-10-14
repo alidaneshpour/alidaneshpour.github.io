@@ -23,7 +23,7 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Ali Daneshpour"
-  pronouns         : # example: "she/her"  
+  pronouns         : # example: "he/him"  
   bio              : "Short biography for the left-hand sidebar"
   location         : "Tehran, Iran"
   employer         : "amirkabir university of technology"
@@ -57,15 +57,15 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : # Username
+  linkedin         : # alidaneshpour
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
   soundcloud       : # Username
   steam            : # Username
-  telegram         : # URL
+  telegram         : # ali_daneshpour
   tumblr           : # Username
-  twitter          : # Username for X / Twitter
+  twitter          : # alidaneshpour
   vine             : # Username
   weibo            : # Username
   wikipedia        : # Username
