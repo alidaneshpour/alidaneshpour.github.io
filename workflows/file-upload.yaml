@@ -1,0 +1,34 @@
+name: File Upload Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      filename:
+        description: 'Name of the file to upload'
+        required: true
+      file_base64:
+        description: 'Base64 encoded file content'
+        required: true
+
+jobs:
+  upload-file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Decode and save file
+      env:
+        FILENAME: ${{ github.event.inputs.filename }}
+        FILE_CONTENT: ${{ github.event.inputs.file_base64 }}
+      run: |
+        mkdir -p uploads
+        echo "$FILE_CONTENT" | base64 -d > "uploads/$FILENAME"
+        
+    - name: Commit and push file
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add uploads/${{ github.event.inputs.filename }}
+        git commit -m "Upload new file: ${{ github.event.inputs.filename }}"
+        git push
