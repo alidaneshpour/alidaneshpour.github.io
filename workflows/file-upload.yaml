@@ -4,6 +4,9 @@ on:
   repository_dispatch:
     types: [upload_file]
 
+permissions:
+  contents: write
+
 jobs:
   upload-file:
     runs-on: ubuntu-latest
@@ -11,18 +14,25 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Debug Payload Information
+      run: |
+        echo "Event payload:"
+        echo "${{ toJson(github.event.client_payload) }}"
+
     - name: Decode and save file
       env:
         FILENAME: ${{ github.event.client_payload.filename }}
         FILE_CONTENT: ${{ github.event.client_payload.file_base64 }}
       run: |
+        echo "Filename: $FILENAME"
+        echo "Content length: ${#FILE_CONTENT}"
         mkdir -p uploads
-        echo "$FILE_CONTENT" | base64 -d > "uploads/$FILENAME"
+        echo "$FILE_CONTENT" | base64 -d > "uploads/$FILENAME" || echo "Decoding failed"
         
     - name: Commit and push file
       run: |
-        git config --global user.name 'GitHub Actions'
-        git config --global user.email 'actions@github.com'
-        git add uploads/${{ github.event.client_payload.filename }}
-        git commit -m "Upload new file: ${{ github.event.client_payload.filename }}"
-        git push
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add uploads/${{ github.event.client_payload.filename }} || echo "Git add failed"
+        git commit -m "Upload new file: ${{ github.event.client_payload.filename }}" || echo "Git commit failed"
+        git push || echo "Git push failed"
