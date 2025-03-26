@@ -1,14 +1,8 @@
 name: File Upload Workflow
 
 on:
-  workflow_dispatch:
-    inputs:
-      filename:
-        description: 'Name of the file to upload'
-        required: true
-      file_base64:
-        description: 'Base64 encoded file content'
-        required: true
+  repository_dispatch:
+    types: [upload_file]
 
 jobs:
   upload-file:
@@ -19,8 +13,8 @@ jobs:
 
     - name: Decode and save file
       env:
-        FILENAME: ${{ github.event.inputs.filename }}
-        FILE_CONTENT: ${{ github.event.inputs.file_base64 }}
+        FILENAME: ${{ github.event.client_payload.filename }}
+        FILE_CONTENT: ${{ github.event.client_payload.file_base64 }}
       run: |
         mkdir -p uploads
         echo "$FILE_CONTENT" | base64 -d > "uploads/$FILENAME"
@@ -29,6 +23,6 @@ jobs:
       run: |
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
-        git add uploads/${{ github.event.inputs.filename }}
-        git commit -m "Upload new file: ${{ github.event.inputs.filename }}"
+        git add uploads/${{ github.event.client_payload.filename }}
+        git commit -m "Upload new file: ${{ github.event.client_payload.filename }}"
         git push
