@@ -44,6 +44,12 @@
             font-size: 14px;
             color: #666;
         }
+        #debugInfo {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #999;
+            word-break: break-all;
+        }
     </style>
 </head>
 <body>
@@ -51,12 +57,14 @@
         <input type="file" id="fileInput">
         <button id="uploadButton" onclick="uploadFile()">Upload to GitHub</button>
         <div id="fileInfo"></div>
+        <div id="debugInfo"></div>
     </div>
 
     <script>
         async function uploadFile() {
             const fileInput = document.getElementById('fileInput');
             const fileInfo = document.getElementById('fileInfo');
+            const debugInfo = document.getElementById('debugInfo');
 
             if (fileInput.files.length === 0) {
                 fileInfo.textContent = 'Please select a file to upload.';
@@ -65,8 +73,23 @@
             }
 
             const file = fileInput.files[0];
+            const token = prompt('Enter GitHub Personal Access Token:');
             
             try {
+                // First, verify repository access
+                const repoCheck = await fetch('https://api.github.com/repos/alidaneshpour/alidaneshpour.github.io', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (!repoCheck.ok) {
+                    const errorData = await repoCheck.json();
+                    throw new Error(`Repository Access Failed: ${errorData.message}`);
+                }
+
                 // Read file as base64
                 const base64 = await new Promise((resolve, reject) => {
                     const reader = new FileReader();
@@ -79,8 +102,9 @@
                 const response = await fetch('https://api.github.com/repos/alidaneshpour/alidaneshpour.github.io/dispatches', {
                     method: 'POST',
                     headers: {
-                        'Authorization': `token ${prompt('Enter GitHub Personal Access Token:')}`,
-                        'Accept': 'application/vnd.github.v3+json'
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         event_type: 'upload_file',
@@ -97,13 +121,15 @@
                         Size: ${(file.size / 1024).toFixed(2)} KB
                     `;
                     fileInfo.style.color = 'green';
+                    debugInfo.textContent = 'Workflow dispatch successful!';
                 } else {
                     const errorData = await response.json();
-                    throw new Error(errorData.message);
+                    throw new Error(`Upload Failed: ${errorData.message}`);
                 }
             } catch (error) {
                 fileInfo.textContent = `Upload Error: ${error.message}`;
                 fileInfo.style.color = 'red';
+                debugInfo.textContent = `Debug Info: ${error.message}`;
             }
         }
     </script>
