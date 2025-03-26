@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure File Upload to GitHub</title>
+    <title>GitHub File Upload Debugger</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +20,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             text-align: center;
-            width: 300px;
+            width: 400px;
         }
         #fileInput {
             margin-bottom: 20px;
@@ -39,15 +39,9 @@
         #uploadButton:hover {
             background-color: #45a049;
         }
-        #fileInfo {
+        #fileInfo, #debugInfo {
             margin-top: 20px;
-            font-size: 14px;
-            color: #666;
-        }
-        #debugInfo {
-            margin-top: 10px;
             font-size: 12px;
-            color: #999;
             word-break: break-all;
         }
     </style>
@@ -76,7 +70,10 @@
             const token = prompt('Enter GitHub Personal Access Token:');
             
             try {
-                // First, verify repository access
+                // Comprehensive error logging
+                debugInfo.textContent = 'Starting upload process...';
+
+                // Verify repository access
                 const repoCheck = await fetch('https://api.github.com/repos/alidaneshpour/alidaneshpour.github.io', {
                     method: 'GET',
                     headers: {
@@ -85,9 +82,11 @@
                     }
                 });
 
+                debugInfo.textContent += `\nRepo Check Status: ${repoCheck.status}`;
+
                 if (!repoCheck.ok) {
                     const errorData = await repoCheck.json();
-                    throw new Error(`Repository Access Failed: ${errorData.message}`);
+                    throw new Error(`Repository Access Failed: ${JSON.stringify(errorData)}`);
                 }
 
                 // Read file as base64
@@ -98,8 +97,11 @@
                     reader.readAsDataURL(file);
                 });
 
-                // Trigger GitHub Actions workflow
-                const response = await fetch('https://api.github.com/repos/alidaneshpour/alidaneshpour.github.io/dispatches', {
+                // Detailed workflow dispatch
+                const dispatchUrl = 'https://api.github.com/repos/alidaneshpour/alidaneshpour.github.io/dispatches';
+                debugInfo.textContent += `\nDispatch URL: ${dispatchUrl}`;
+
+                const response = await fetch(dispatchUrl, {
                     method: 'POST',
                     headers: {
                         'Authorization': `token ${token}`,
@@ -115,21 +117,23 @@
                     })
                 });
 
+                debugInfo.textContent += `\nDispatch Response Status: ${response.status}`;
+
                 if (response.ok) {
                     fileInfo.innerHTML = `
                         File Queued for Upload: ${file.name}<br>
                         Size: ${(file.size / 1024).toFixed(2)} KB
                     `;
                     fileInfo.style.color = 'green';
-                    debugInfo.textContent = 'Workflow dispatch successful!';
+                    debugInfo.textContent += '\nWorkflow dispatch successful!';
                 } else {
-                    const errorData = await response.json();
-                    throw new Error(`Upload Failed: ${errorData.message}`);
+                    const errorText = await response.text();
+                    throw new Error(`Upload Failed: ${errorText}`);
                 }
             } catch (error) {
                 fileInfo.textContent = `Upload Error: ${error.message}`;
                 fileInfo.style.color = 'red';
-                debugInfo.textContent = `Debug Info: ${error.message}`;
+                debugInfo.textContent += `\nFull Error: ${error.message}`;
             }
         }
     </script>
