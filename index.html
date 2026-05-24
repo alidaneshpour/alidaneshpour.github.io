@@ -37,62 +37,19 @@
             overflow-x: hidden;
         }
 
-        /* ═══════════════════════════════════════
-           OILFIELD BACKGROUND
-        ═══════════════════════════════════════ */
-        /* .oilfield-bg {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        } */
-
-        /* Sky gradient layers */
-        /* .oilfield-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 80% 55% at 50% -10%, rgba(12,40,80,.95) 0%, transparent 100%),
-                radial-gradient(ellipse 40% 35% at 20% 40%,  rgba(200,100,20,.06)  0%, transparent 70%),
-                radial-gradient(ellipse 40% 35% at 80% 40%,  rgba(200,100,20,.06)  0%, transparent 70%),
-                linear-gradient(180deg, #04090f 0%, #06121e 45%, #09182a 70%, #0c1e35 100%);
-        } */
-
-        /* Subtle grid overlay */
-        /* .oilfield-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                repeating-linear-gradient(0deg,  transparent, transparent 60px, rgba(22,45,74,.08) 60px, rgba(22,45,74,.08) 61px),
-                repeating-linear-gradient(90deg, transparent, transparent 120px,rgba(22,45,74,.05) 120px,rgba(22,45,74,.05) 121px);
-        } */
-
-        /* z-index stacking for main content */
-        /* header, main, footer { position: relative; z-index: 2; } */
-
-        /* ═══════════════════════════
-           HEADER
-        ═══════════════════════════ */
         header {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.96) 100%);
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.96) 100%);
             border-bottom: 1px solid var(--border);
             position: relative;
         }
-
-        /* Gold line under header */
         header::after {
             content: '';
             position: absolute;
             bottom: 0; left: 0; right: 0;
             height: 2px;
-            /* background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, #ffdd80 50%, var(--gold) 70%, transparent 100%); */
             opacity: .7;
         }
 
-        /* ── Header inner layout ── */
         .header-main {
             display: flex;
             align-items: center;
@@ -102,272 +59,113 @@
             margin: 0 auto;
         }
 
-        /* ── Logo boxes ── */
-        /* .logo-wrap {
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
+        .logo-box img { width: 130px; height: 130px; object-fit: contain; }
+        .logo-lab img { width: 160px; height: 160px; object-fit: contain; }
+        .logo-label { font-size: 10px; color: var(--text-muted); text-align: center; letter-spacing: .5px; }
 
-        .logo-box {
-            width: 100px;
-            height: 100px;
-            border: 1.5px solid var(--border-light);
-            border-radius: 18px;
-            background: rgba(255,255,255,.03);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            transition: border-color .3s, box-shadow .3s, transform .3s;
-            cursor: default;
-        }
-        .logo-box:hover {
-            border-color: var(--gold);
-            box-shadow: 0 0 24px var(--gold-dim), 0 4px 20px rgba(0,0,0,.4);
-            transform: translateY(-2px);
-        } */
-        .logo-box img {
-            width: 130px;
-            height: 130px;
-            object-fit: contain;
-            padding: 0px;
-        }
-
-        .logo-lab img {
-            width: 160px;
-            height: 160px;
-            object-fit: contain;
-            padding: 0px;
-        }
-
-        .logo-label {
-            font-size: 10px;
-            color: var(--text-muted);
-            text-align: center;
-            letter-spacing: .5px;
-        }
-
-        /* Fallback icon inside logo box */
-        .logo-fallback {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-        }
+        .logo-fallback { display: flex; flex-direction: column; align-items: center; gap: 6px; }
         .logo-fallback svg { width: 36px; height: 36px; }
         .logo-fallback span { font-size: 9px; color: var(--text-muted); text-align: center; line-height: 1.4; }
 
-        /* ── Center title ── */
-        .header-center {
-            flex: 1;
-            text-align: center;
-        }
+        .header-center { flex: 1; text-align: center; }
 
         .label-phd {
-            font-size: 10px;
-            letter-spacing: 5px;
-            color: var(--gold);
-            font-weight: 600;
-            opacity: .85;
-            margin-bottom: 14px;
-            text-transform: uppercase;
+            font-size: 10px; letter-spacing: 5px; color: var(--gold);
+            font-weight: 600; opacity: .85; margin-bottom: 14px; text-transform: uppercase;
         }
-
         .thesis-title {
-            font-size: 20px;
-            font-weight: 800;
-            line-height: 1.85;
-            color: #000000;
-            margin-bottom: 14px;
+            font-size: 20px; font-weight: 800; line-height: 1.85;
+            color: #000000; margin-bottom: 14px;
             text-shadow: 0 2px 20px rgba(200,164,60,.12);
         }
-
-        .student-row {
-            font-size: 13.5px;
-            color: var(--text-muted);
-        }
+        .student-row { font-size: 13.5px; color: var(--text-muted); }
         .student-row strong { color: var(--gold-light); font-weight: 700; }
 
-        /* ── Abstract ── */
         .abstract-wrap {
             padding: 24px 44px 28px;
             border-top: 1px solid var(--border);
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1200px; margin: 0 auto;
         }
-
         .sec-label {
-            font-size: 17px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            color: var(--gold);
-            margin-bottom: 14px;
-            /* display: flex; */
-            align-items: center;
-            gap: 12px;
+            font-size: 17px; font-weight: 700; letter-spacing: 3px;
+            color: var(--gold); margin-bottom: 14px;
+            align-items: center; gap: 12px;
         }
         .sec-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
+            content: ''; flex: 1; height: 1px;
             background: linear-gradient(90deg, rgba(200,164,60,.35), transparent);
         }
-
         .abstract-body {
-            font-size: 13.5px;
-            line-height: 2.15;
-            color: var(--text-muted);
-            text-align: justify;
-        }
-        .abstract-note {
-            margin-top: 10px;
-            font-size: 11.5px;
-            color: var(--text-dim);
-            font-style: italic;
+            font-size: 13.5px; line-height: 2.15;
+            color: var(--text-muted); text-align: justify;
         }
 
-        /* ── Download bar ── */
         .download-bar {
             border-top: 1px solid var(--border);
             padding: 14px 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 18px;
-            background: rgba(0,0,0,.2);
+            display: flex; align-items: center; justify-content: center;
+            margin-top: -4px;
+            gap: 18px; background: rgba(0,0,0,.2);
         }
         .dl-label { font-size: 13px; color: var(--text-muted); }
-
         .btn-dl {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            display: inline-flex; align-items: center; gap: 8px;
             background: linear-gradient(135deg, #9a2414 0%, #cf3c1e 100%);
-            color: #fff;
-            padding: 10px 28px;
-            border-radius: 9px;
-            font-family: 'Vazirmatn', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
+            color: #fff; padding: 10px 28px; border-radius: 9px;
+            font-family: 'Vazirmatn', sans-serif; font-size: 13px; font-weight: 700;
+            text-decoration: none; border: none; cursor: pointer;
             transition: transform .25s, box-shadow .25s;
             box-shadow: 0 4px 18px rgba(155,36,20,.35);
         }
         .btn-dl:hover { transform: translateY(-2px); box-shadow: 0 7px 24px rgba(155,36,20,.55); }
         .btn-dl svg { width: 15px; height: 15px; }
 
-        /* ═══════════════════════════
-           MAIN
-        ═══════════════════════════ */
         main { padding: 52px 0 90px; }
+        .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
 
-        .container {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0 28px;
-        }
-
-        /* ── Section header ── */
-        .sec-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 26px;
-        }
-
+        .sec-header { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
         .sec-icon {
-            width: 44px; height: 44px;
-            border-radius: 11px;
-            background: var(--gold-dim);
-            border: 1px solid rgba(200,164,60,.28);
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
+            width: 44px; height: 44px; border-radius: 11px;
+            background: var(--gold-dim); border: 1px solid rgba(200,164,60,.28);
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
         .sec-icon svg { width: 20px; height: 20px; color: var(--gold); }
-
         .sec-heading { font-size: 17px; font-weight: 700; color: #000000; }
         .sec-sub { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
 
-        /* ── Time slots display ── */
         .slots-section { margin-bottom: 56px; }
-
-        .slots-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-
+        .slots-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
         .slot-badge {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 11px;
-            padding: 16px 14px 14px;
-            text-align: center;
-            font-size: 12.5px;
-            color: var(--text);
-            font-weight: 500;
-            position: relative;
-            transition: border-color .2s;
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 11px; padding: 16px 14px 14px;
+            text-align: center; font-size: 12.5px; color: var(--text);
+            font-weight: 500; position: relative; transition: border-color .2s;
         }
         .slot-badge:hover { border-color: var(--border-light); }
-        .slot-badge-num {
-            position: absolute; top: 7px; left: 10px;
-            font-size: 10px; color: var(--gold); font-weight: 700;
-        }
+        .slot-badge-num { position: absolute; top: 7px; left: 10px; font-size: 10px; color: var(--gold); font-weight: 700; }
         .slot-badge-icon { font-size: 20px; margin-bottom: 8px; display: block; }
 
-        /* ── Divider ── */
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-            margin-bottom: 48px;
-        }
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin-bottom: 48px; }
 
-        /* ── Role group ── */
         .role-group { margin-bottom: 30px; }
-        .role-group-label {
-            font-size: 10.5px; font-weight: 700; letter-spacing: 2px;
-            color: var(--text-dim); margin-bottom: 14px; padding: 0 2px;
-        }
-
+        .role-group-label { font-size: 10.5px; font-weight: 700; letter-spacing: 2px; color: var(--text-dim); margin-bottom: 14px; padding: 0 2px; }
         .profs-row { display: grid; gap: 16px; }
         .profs-row.col2 { grid-template-columns: 1fr 1fr; }
         .profs-row.col1 { grid-template-columns: 1fr; }
 
-        /* ── Prof card ── */
         .prof-card {
-            background: var(--card);
-            border: 1.5px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
+            background: var(--card); border: 1.5px solid var(--border);
+            border-radius: 16px; overflow: hidden;
             transition: box-shadow .3s, border-color .3s;
         }
         .prof-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.35); }
-        .prof-card.locked {
-            border-color: rgba(40,184,106,.28);
-            box-shadow: 0 0 24px rgba(40,184,106,.06);
-        }
-
-        /* Large card (supervisor 1) — 2-col slot grid */
-        .prof-card.large-card .slots-list {
-            display: grid !important;
-            grid-template-columns: 1fr 1fr;
-            flex-direction: unset;
-        }
+        .prof-card.locked { border-color: rgba(40,184,106,.28); box-shadow: 0 0 24px rgba(40,184,106,.06); }
+        .prof-card.large-card .slots-list { display: grid !important; grid-template-columns: 1fr 1fr; flex-direction: unset; }
 
         .pcard-head {
-            padding: 16px 20px;
-            display: flex; align-items: center; gap: 14px;
-            border-bottom: 1px solid var(--border);
-            background: rgba(0,0,0,.14);
+            padding: 16px 20px; display: flex; align-items: center; gap: 14px;
+            border-bottom: 1px solid var(--border); background: rgba(0,0,0,.14);
         }
-
         .avatar {
             width: 46px; height: 46px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
@@ -375,48 +173,34 @@
             color: var(--gold-light);
         }
         [data-role="supervisor"] .avatar { background: rgba(20,70,130,.85); }
-        [data-role="advisor"]    .avatar { background: rgba(20,90,65,.85);  }
-        [data-role="internal"]   .avatar { background: rgba(75,70,15,.85);  }
-        [data-role="external"]   .avatar { background: rgba(85,20,85,.85);  }
+        [data-role="advisor"]    .avatar { background: rgba(20,90,65,.85); }
+        [data-role="internal"]   .avatar { background: rgba(75,70,15,.85); }
+        [data-role="external"]   .avatar { background: rgba(85,20,85,.85); }
 
         .pname { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-
-        .role-tag {
-            display: inline-block; font-size: 10.5px;
-            padding: 2px 11px; border-radius: 20px; font-weight: 600;
-        }
+        .role-tag { display: inline-block; font-size: 10.5px; padding: 2px 11px; border-radius: 20px; font-weight: 600; }
         [data-role="supervisor"] .role-tag { background: rgba(20,70,130,.55); color: #80c0e8; }
         [data-role="advisor"]    .role-tag { background: rgba(20,90,65,.55);  color: #80e0b8; }
         [data-role="internal"]   .role-tag { background: rgba(75,70,15,.55);  color: #e0d880; }
         [data-role="external"]   .role-tag { background: rgba(85,20,85,.55);  color: #e080e0; }
 
         .locked-badge {
-            margin-right: auto;
-            display: none; align-items: center; gap: 6px;
-            font-size: 11px; color: var(--green);
-            background: var(--green-dim);
-            border: 1px solid rgba(40,184,106,.25);
-            padding: 4px 12px; border-radius: 20px; white-space: nowrap;
+            margin-right: auto; display: none; align-items: center; gap: 6px;
+            font-size: 11px; color: var(--green); background: var(--green-dim);
+            border: 1px solid rgba(40,184,106,.25); padding: 4px 12px;
+            border-radius: 20px; white-space: nowrap;
         }
         .prof-card.locked .locked-badge { display: flex; }
 
         .pcard-body { padding: 18px 20px; }
-
-        .slots-choose-label {
-            font-size: 11px; color: #f9f9f9;
-            font-weight: 700; margin-bottom: 12px; letter-spacing: 1px;
-        }
-
+        .slots-choose-label { font-size: 11px; color: #f9f9f9; font-weight: 700; margin-bottom: 12px; letter-spacing: 1px; }
         .slots-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
 
         .sl-item {
             display: flex; align-items: center; gap: 11px;
             padding: 10px 14px; border-radius: 9px;
-            border: 1px solid var(--border);
-            background: rgba(0,0,0,.18);
-            cursor: pointer;
-            transition: border-color .18s, background .18s;
-            user-select: none;
+            border: 1px solid var(--border); background: rgba(0,0,0,.18);
+            cursor: pointer; transition: border-color .18s, background .18s; user-select: none;
         }
         .sl-item:hover:not(.sl-disabled) { border-color: var(--gold); background: var(--gold-dim); }
         .sl-item.sl-selected { border-color: var(--gold); background: var(--gold-dim); }
@@ -433,14 +217,12 @@
         .sl-item.sl-selected .sl-check svg { display: block; }
 
         .sl-time { font-size: 12.5px; color: var(--text); }
-        .sl-num  { font-size: 10px;   color: var(--text-dim); margin-right: auto; font-weight: 700; }
+        .sl-num  { font-size: 10px; color: var(--text-dim); margin-right: auto; font-weight: 700; }
 
         .pcard-foot {
             padding: 13px 20px; border-top: 1px solid var(--border);
-            display: flex; align-items: center; gap: 12px;
-            background: rgba(0,0,0,.1);
+            display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,.1);
         }
-
         .sel-count { font-size: 12px; color: #ffffff; }
         .sel-count strong { color: var(--gold); }
 
@@ -454,34 +236,64 @@
         }
         .btn-submit-act {
             background: linear-gradient(135deg, var(--gold) 0%, #a07820 100%);
-            color: #04090f;
-            box-shadow: 0 4px 14px rgba(200,164,60,.25);
+            color: #04090f; box-shadow: 0 4px 14px rgba(200,164,60,.25);
         }
         .btn-submit-act:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,164,60,.45); }
-        .btn-edit-act {
-            background: var(--green-dim); color: var(--green);
-            border: 1px solid rgba(40,184,106,.3);
-        }
+        .btn-edit-act { background: var(--green-dim); color: var(--green); border: 1px solid rgba(40,184,106,.3); }
         .btn-edit-act:hover { background: rgba(40,184,106,.22); }
 
-        /* ══════════ SUMMARY ══════════ */
+        /* Loading state */
+        .loading-overlay {
+            position: fixed; inset: 0;
+            background: rgba(4,9,15,.85);
+            backdrop-filter: blur(6px);
+            z-index: 300; display: flex;
+            flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 18px;
+        }
+        .loading-overlay.hidden { display: none; }
+        .spinner {
+            width: 44px; height: 44px;
+            border: 3px solid rgba(200,164,60,.2);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { font-size: 14px; color: var(--gold); letter-spacing: 2px; }
+
+        /* Sync indicator */
+        .sync-bar {
+            position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+            background: var(--card); border: 1px solid var(--border-light);
+            border-radius: 30px; padding: 8px 20px;
+            font-size: 12px; color: var(--text);
+            display: flex; align-items: center; gap: 8px;
+            opacity: 0; transition: opacity .3s;
+            z-index: 100; pointer-events: none;
+        }
+        .sync-bar.show { opacity: 1; }
+        .sync-dot { width: 7px; height: 7px; border-radius: 50%; }
+        .sync-dot.saving  { background: var(--gold); animation: pulse .8s infinite; }
+        .sync-dot.saved   { background: var(--green); }
+        .sync-dot.error   { background: var(--red); }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
         .summary-wrap {
             background: var(--surface); border: 1px solid var(--border);
             border-radius: 14px; padding: 22px 26px; margin-top: 44px;
         }
-        .summary-grid {
-            display: grid; grid-template-columns: repeat(4,1fr);
-            gap: 12px; margin-top: 16px;
-        }
+        .summary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 16px; }
         .sum-slot {
             background: var(--card); border: 1px solid var(--border);
             border-radius: 10px; padding: 13px 14px;
         }
         .sum-slot-hd { font-size: 10.5px; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
-        .sum-slot-time { font-size: 11px; color: var(#6a90b8); margin-bottom: 9px; line-height: 1.6; }
+        .sum-slot-time { font-size: 11px; color: var(--text); margin-bottom: 9px; line-height: 1.6; }
         .sum-entries { display: flex; flex-direction: column; gap: 4px; }
         .sum-entry {
-            font-size: 10.5px; color: var(#6a90b8);
+            font-size: 10.5px; color: var(--text);
             padding: 2px 7px; border-radius: 5px;
             background: rgba(255,255,255,.04);
             display: flex; align-items: center; gap: 5px;
@@ -489,7 +301,6 @@
         .sum-entry.confirmed { color: var(--green); background: var(--green-dim); }
         .sum-none { font-size: 10.5px; color: var(--text-dim); font-style: italic; }
 
-        /* ══════════ MODAL ══════════ */
         .overlay {
             position: fixed; inset: 0;
             background: rgba(0,0,0,.85);
@@ -500,50 +311,36 @@
         .overlay.show { display: flex; }
 
         .modal {
-            background: var(--card);
-            border: 1.5px solid var(--border-light);
+            background: var(--card); border: 1.5px solid var(--border-light);
             border-radius: 18px; padding: 36px 32px 30px;
             width: 370px; text-align: center;
             animation: modalPop .3s cubic-bezier(.34,1.56,.64,1);
             position: relative;
         }
-        @keyframes modalPop {
-            from { transform: scale(.88); opacity: 0; }
-            to   { transform: scale(1);   opacity: 1; }
-        }
+        @keyframes modalPop { from{transform:scale(.88);opacity:0} to{transform:scale(1);opacity:1} }
         .modal::before {
-            content: ''; position: absolute;
-            top: 0; left: 50%; transform: translateX(-50%);
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
             width: 60%; height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
-
         .modal-icon-wrap {
-            width: 60px; height: 60px;
-            background: var(--gold-dim);
-            border: 1.5px solid rgba(200,164,60,.35);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 18px;
+            width: 60px; height: 60px; background: var(--gold-dim);
+            border: 1.5px solid rgba(200,164,60,.35); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
         }
         .modal-icon-wrap svg { width: 26px; height: 26px; color: var(--gold); }
-
         .modal-ttl  { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 7px; }
         .modal-desc { font-size: 12.5px; color: #ffffff; line-height: 1.7; margin-bottom: 22px; }
-
         .pw-input {
             width: 100%; background: rgba(0,0,0,.35);
             border: 1.5px solid var(--border-light); border-radius: 9px;
-            padding: 13px 16px;
-            font-family: 'Vazirmatn', sans-serif;
+            padding: 13px 16px; font-family: 'Vazirmatn', sans-serif;
             font-size: 22px; color: var(--text);
             text-align: center; letter-spacing: 10px; outline: none;
             transition: border-color .2s, box-shadow .2s; margin-bottom: 7px;
         }
         .pw-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-dim); }
-
         .pw-err { font-size: 12px; color: var(--red); min-height: 18px; margin-bottom: 18px; }
-
         .modal-btns { display: flex; gap: 10px; }
         .mbtn {
             flex: 1; padding: 12px; border-radius: 9px; border: none;
@@ -553,17 +350,13 @@
         }
         .mbtn:hover { opacity: .88; transform: translateY(-1px); }
         .mbtn-confirm { background: linear-gradient(135deg, var(--gold), #a07820); color: #04090f; }
-        .mbtn-cancel  { background: rgb(212, 61, 31); color: var(--text-muted); border: 1px solid var(--border); }
+        .mbtn-cancel  { background: rgb(212,61,31); color: var(--text-muted); border: 1px solid var(--border); }
 
-        /* ══════════ FOOTER ══════════ */
         footer {
-            border-top: 1px solid var(--border);
-            padding: 18px 40px; text-align: center;
-            font-size: 11.5px; color: var(--text-dim);
-            background: rgba(0,0,0,.15);
+            border-top: 1px solid var(--border); padding: 18px 40px; text-align: center;
+            font-size: 11.5px; color: var(--text-dim); background: rgba(0,0,0,.15);
         }
 
-        /* ══════════ RESPONSIVE ══════════ */
         @media (max-width: 800px) {
             .header-main { flex-direction: column; padding: 22px; text-align: center; }
             .abstract-wrap, .download-bar { padding: 18px 22px; }
@@ -576,369 +369,189 @@
 </head>
 <body>
 
-    <!-- ═══════════════════════════════════════════════
-         OILFIELD BACKGROUND — full-page SVG scene
-    ═══════════════════════════════════════════════ -->
-    <div class="oilfield-bg">
-        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"
-             xmlns="http://www.w3.org/2000/svg"
-             style="position:absolute;inset:0;width:100%;height:100%;">
-            <defs>
-                <!-- Gold glow gradient -->
-                <radialGradient id="glowCenter" cx="50%" cy="75%" r="55%">
-                    <stop offset="0%"   stop-color="#c8a43c" stop-opacity="0.06"/>
-                    <stop offset="100%" stop-color="#c8a43c" stop-opacity="0"/>
-                </radialGradient>
-                <!-- Left rig glow -->
-                <radialGradient id="glowL" cx="50%" cy="100%" r="50%">
-                    <stop offset="0%"   stop-color="#ff8820" stop-opacity="0.18"/>
-                    <stop offset="100%" stop-color="#ff8820" stop-opacity="0"/>
-                </radialGradient>
-                <!-- Right rig glow -->
-                <radialGradient id="glowR" cx="50%" cy="100%" r="50%">
-                    <stop offset="0%"   stop-color="#ff8820" stop-opacity="0.15"/>
-                    <stop offset="100%" stop-color="#ff8820" stop-opacity="0"/>
-                </radialGradient>
-                <!-- Moon glow -->
-                <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%"   stop-color="#d8c070" stop-opacity="0.22"/>
-                    <stop offset="70%"  stop-color="#c8a43c" stop-opacity="0.05"/>
-                    <stop offset="100%" stop-color="#c8a43c" stop-opacity="0"/>
-                </radialGradient>
-                <!-- Seismic wave gradient -->
-                <linearGradient id="seismicGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%"   stop-color="#c8a43c" stop-opacity="0"/>
-                    <stop offset="15%"  stop-color="#c8a43c" stop-opacity="0.25"/>
-                    <stop offset="50%"  stop-color="#c8a43c" stop-opacity="0.35"/>
-                    <stop offset="85%"  stop-color="#c8a43c" stop-opacity="0.25"/>
-                    <stop offset="100%" stop-color="#c8a43c" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="seismicGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%"   stop-color="#6090c8" stop-opacity="0"/>
-                    <stop offset="20%"  stop-color="#6090c8" stop-opacity="0.12"/>
-                    <stop offset="50%"  stop-color="#6090c8" stop-opacity="0.18"/>
-                    <stop offset="80%"  stop-color="#6090c8" stop-opacity="0.12"/>
-                    <stop offset="100%" stop-color="#6090c8" stop-opacity="0"/>
-                </linearGradient>
-                <!-- Ground gradient -->
-                <linearGradient id="groundGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%"   stop-color="#0e2038"/>
-                    <stop offset="100%" stop-color="#060f1a"/>
-                </linearGradient>
-                <!-- Rig metal gradient -->
-                <linearGradient id="rigMetal" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%"   stop-color="#1a3050"/>
-                    <stop offset="50%"  stop-color="#2a4870"/>
-                    <stop offset="100%" stop-color="#1a3050"/>
-                </linearGradient>
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-                <filter id="softglow">
-                    <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
-                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-            </defs>
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div class="loading-text">در حال بارگذاری…</div>
+</div>
 
-            <!-- ── Sky atmosphere ── -->
-            <rect width="1440" height="900" fill="url(#glowCenter)"/>
+<!-- Sync indicator -->
+<div class="sync-bar" id="syncBar">
+    <div class="sync-dot saving" id="syncDot"></div>
+    <span id="syncText">در حال ذخیره…</span>
+</div>
 
-            <!-- ── Stars ── -->
-            <g opacity="0.7">
-                <circle cx="120"  cy="60"  r="1.2" fill="#fff" opacity="0.7"/>
-                <circle cx="230"  cy="35"  r="0.8" fill="#fff" opacity="0.5"/>
-                <circle cx="310"  cy="90"  r="1.4" fill="#fff" opacity="0.6"/>
-                <circle cx="440"  cy="48"  r="0.9" fill="#fff" opacity="0.5"/>
-                <circle cx="560"  cy="22"  r="1.1" fill="#d8c070" opacity="0.7"/>
-                <circle cx="680"  cy="68"  r="0.8" fill="#fff" opacity="0.4"/>
-                <circle cx="750"  cy="38"  r="1.3" fill="#fff" opacity="0.6"/>
-                <circle cx="870"  cy="55"  r="0.9" fill="#fff" opacity="0.5"/>
-                <circle cx="960"  cy="28"  r="1.2" fill="#d8c070" opacity="0.6"/>
-                <circle cx="1080" cy="72"  r="0.8" fill="#fff" opacity="0.5"/>
-                <circle cx="1190" cy="40"  r="1.4" fill="#fff" opacity="0.7"/>
-                <circle cx="1300" cy="85"  r="1.0" fill="#fff" opacity="0.5"/>
-                <circle cx="1380" cy="55"  r="0.8" fill="#fff" opacity="0.6"/>
-                <circle cx="180"  cy="130" r="0.7" fill="#fff" opacity="0.4"/>
-                <circle cx="400"  cy="110" r="0.9" fill="#fff" opacity="0.5"/>
-                <circle cx="640"  cy="105" r="0.7" fill="#fff" opacity="0.4"/>
-                <circle cx="900"  cy="95"  r="1.0" fill="#fff" opacity="0.5"/>
-                <circle cx="1150" cy="120" r="0.8" fill="#d8c070" opacity="0.5"/>
-                <circle cx="1350" cy="100" r="0.7" fill="#fff" opacity="0.4"/>
-                <circle cx="75"   cy="170" r="0.8" fill="#fff" opacity="0.4"/>
-                <circle cx="280"  cy="155" r="0.6" fill="#fff" opacity="0.35"/>
-                <circle cx="520"  cy="140" r="0.9" fill="#fff" opacity="0.45"/>
-                <circle cx="780"  cy="160" r="0.7" fill="#d8c070" opacity="0.4"/>
-                <circle cx="1020" cy="145" r="0.8" fill="#fff" opacity="0.4"/>
-                <circle cx="1260" cy="165" r="0.6" fill="#fff" opacity="0.35"/>
-                <circle cx="1420" cy="140" r="0.9" fill="#fff" opacity="0.5"/>
-            </g>
+<div class="oilfield-bg" style="display:none;">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"
+         xmlns="http://www.w3.org/2000/svg"
+         style="position:absolute;inset:0;width:100%;height:100%;">
+        <defs>
+            <radialGradient id="glowCenter" cx="50%" cy="75%" r="55%">
+                <stop offset="0%"   stop-color="#c8a43c" stop-opacity="0.06"/>
+                <stop offset="100%" stop-color="#c8a43c" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="glowL" cx="50%" cy="100%" r="50%">
+                <stop offset="0%"   stop-color="#ff8820" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#ff8820" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="glowR" cx="50%" cy="100%" r="50%">
+                <stop offset="0%"   stop-color="#ff8820" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#ff8820" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"   stop-color="#d8c070" stop-opacity="0.22"/>
+                <stop offset="70%"  stop-color="#c8a43c" stop-opacity="0.05"/>
+                <stop offset="100%" stop-color="#c8a43c" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="seismicGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#c8a43c" stop-opacity="0"/>
+                <stop offset="15%"  stop-color="#c8a43c" stop-opacity="0.25"/>
+                <stop offset="50%"  stop-color="#c8a43c" stop-opacity="0.35"/>
+                <stop offset="85%"  stop-color="#c8a43c" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#c8a43c" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="seismicGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#6090c8" stop-opacity="0"/>
+                <stop offset="20%"  stop-color="#6090c8" stop-opacity="0.12"/>
+                <stop offset="50%"  stop-color="#6090c8" stop-opacity="0.18"/>
+                <stop offset="80%"  stop-color="#6090c8" stop-opacity="0.12"/>
+                <stop offset="100%" stop-color="#6090c8" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="groundGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%"   stop-color="#0e2038"/>
+                <stop offset="100%" stop-color="#060f1a"/>
+            </linearGradient>
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="softglow">
+                <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+        </defs>
+        <rect width="1440" height="900" fill="url(#glowCenter)"/>
+        <g opacity="0.7">
+            <circle cx="120"  cy="60"  r="1.2" fill="#fff" opacity="0.7"/>
+            <circle cx="230"  cy="35"  r="0.8" fill="#fff" opacity="0.5"/>
+            <circle cx="310"  cy="90"  r="1.4" fill="#fff" opacity="0.6"/>
+            <circle cx="440"  cy="48"  r="0.9" fill="#fff" opacity="0.5"/>
+            <circle cx="560"  cy="22"  r="1.1" fill="#d8c070" opacity="0.7"/>
+            <circle cx="680"  cy="68"  r="0.8" fill="#fff" opacity="0.4"/>
+            <circle cx="750"  cy="38"  r="1.3" fill="#fff" opacity="0.6"/>
+            <circle cx="870"  cy="55"  r="0.9" fill="#fff" opacity="0.5"/>
+            <circle cx="960"  cy="28"  r="1.2" fill="#d8c070" opacity="0.6"/>
+            <circle cx="1080" cy="72"  r="0.8" fill="#fff" opacity="0.5"/>
+            <circle cx="1190" cy="40"  r="1.4" fill="#fff" opacity="0.7"/>
+            <circle cx="1300" cy="85"  r="1.0" fill="#fff" opacity="0.5"/>
+            <circle cx="1380" cy="55"  r="0.8" fill="#fff" opacity="0.6"/>
+        </g>
+        <circle cx="1280" cy="90" r="50" fill="url(#moonGlow)"/>
+        <circle cx="1280" cy="90" r="28" fill="#1a2d45" opacity="0.7"/>
+        <circle cx="1280" cy="90" r="26" fill="none" stroke="#d8c070" stroke-width="1" opacity="0.25"/>
+        <polyline fill="none" stroke="url(#seismicGrad2)" stroke-width="1.2" opacity="0.5"
+            points="0,620 80,620 110,605 130,635 150,610 170,630 190,618 230,618 260,610 280,628 300,612 320,625 340,618 400,618 430,608 450,632 470,614 490,628 510,618 560,618 590,605 610,635 630,610 650,630 670,618 730,618 760,608 780,628 800,612 820,625 840,618 920,618 950,605 970,635 990,610 1010,630 1030,618 1080,618 1110,608 1130,632 1150,614 1170,628 1190,618 1280,618 1310,610 1330,628 1350,612 1370,625 1390,618 1440,618"/>
+        <polyline fill="none" stroke="url(#seismicGrad)" stroke-width="1.4" opacity="0.4"
+            points="0,660 60,660 85,642 105,678 125,648 145,672 165,658 220,658 250,645 268,675 285,650 305,668 325,658 390,658 415,643 435,679 455,649 475,671 495,658 560,658 590,642 610,678 630,648 650,672 670,658 740,658 768,645 785,675 805,650 825,668 845,658 920,658 950,643 970,679 990,649 1010,671 1030,658 1100,658 1128,642 1148,678 1168,648 1188,672 1208,658 1300,658 1330,645 1350,675 1370,650 1390,668 1410,658 1440,658"/>
+        <rect x="0" y="730" width="1440" height="170" fill="url(#groundGrad)"/>
+        <line x1="0" y1="730" x2="1440" y2="730" stroke="#1e4068" stroke-width="1.5" opacity="0.6"/>
+        <path d="M0,730 Q180,715 360,728 Q540,740 720,722 Q900,710 1080,726 Q1260,738 1440,720 L1440,730 Z" fill="#0a1828" opacity="0.8"/>
+        <ellipse cx="720" cy="730" rx="180" ry="60" fill="url(#glowL)" opacity="0.7"/>
+        <g transform="translate(660, 310)" opacity="0.85">
+            <polygon points="60,0 10,120 110,120" fill="#1a3a60" stroke="#2a5080" stroke-width="1.2"/>
+            <line x1="10" y1="120" x2="0"   y2="420" stroke="#2a5080" stroke-width="4"/>
+            <line x1="110" y1="120" x2="120" y2="420" stroke="#2a5080" stroke-width="4"/>
+            <line x1="0"   y1="420" x2="-20" y2="420" stroke="#1e4068" stroke-width="6"/>
+            <line x1="120" y1="420" x2="140" y2="420" stroke="#1e4068" stroke-width="6"/>
+            <line x1="14"  y1="168" x2="106" y2="168" stroke="#234a78" stroke-width="1.5"/>
+            <line x1="8"   y1="232" x2="112" y2="232" stroke="#234a78" stroke-width="1.5"/>
+            <line x1="4"   y1="296" x2="116" y2="296" stroke="#234a78" stroke-width="1.5"/>
+            <line x1="0"   y1="360" x2="120" y2="360" stroke="#234a78" stroke-width="1.5"/>
+            <rect x="-10" y="420" width="140" height="32" fill="#122030" rx="3"/>
+            <rect x="-20" y="450" width="160" height="18" fill="#0e1828" rx="2"/>
+            <rect x="46" y="400" width="28" height="24" fill="#1a3050" rx="4"/>
+            <rect x="57" y="36" width="6" height="370" fill="#1a3a60" opacity="0.9"/>
+            <circle cx="60" cy="-6" r="3.5" fill="#ffcc44" filter="url(#glow)"/>
+        </g>
+        <ellipse cx="250" cy="730" rx="120" ry="40" fill="url(#glowL)" opacity="0.5"/>
+        <g transform="translate(200, 440)" opacity="0.65">
+            <polygon points="40,0 5,85 75,85" fill="#162840" stroke="#1e3a5a" stroke-width="1"/>
+            <line x1="5"  y1="85" x2="-5"  y2="290" stroke="#1e3a5a" stroke-width="3"/>
+            <line x1="75" y1="85" x2="85"  y2="290" stroke="#1e3a5a" stroke-width="3"/>
+            <rect x="-8"  y="290" width="96" height="22" fill="#0e1828" rx="2"/>
+            <circle cx="40" cy="-4" r="2.5" fill="#ffcc44" filter="url(#glow)" opacity="0.8"/>
+        </g>
+        <ellipse cx="1180" cy="730" rx="140" ry="45" fill="url(#glowR)" opacity="0.55"/>
+        <g transform="translate(1115, 380)" opacity="0.72">
+            <polygon points="55,0 8,105 102,105" fill="#162840" stroke="#1e3a5a" stroke-width="1"/>
+            <line x1="8"   y1="105" x2="-5"  y2="350" stroke="#1e3a5a" stroke-width="3.5"/>
+            <line x1="102" y1="105" x2="115" y2="350" stroke="#1e3a5a" stroke-width="3.5"/>
+            <rect x="-10"  y="350" width="130" height="26" fill="#0e1828" rx="2"/>
+            <line x1="115" y1="200" x2="138" y2="140" stroke="#1e3a5a" stroke-width="2.5"/>
+            <ellipse cx="139" cy="137" rx="6" ry="4" fill="#ff8820" opacity="0.6" filter="url(#softglow)"/>
+            <circle cx="55"  cy="-4" r="3" fill="#ffcc44" filter="url(#glow)" opacity="0.85"/>
+        </g>
+        <path d="M0,768 Q360,752 720,760 Q1080,768 1440,755" fill="none" stroke="#1a3050" stroke-width="7" opacity="0.55"/>
+        <path d="M0,768 Q360,752 720,760 Q1080,768 1440,755" fill="none" stroke="#2a4870" stroke-width="2" opacity="0.4"/>
+        <defs>
+            <linearGradient id="topVig" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%"  stop-color="#030609" stop-opacity="0.9"/>
+                <stop offset="40%" stop-color="#030609" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="botVig" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%"   stop-color="#030609" stop-opacity="0"/>
+                <stop offset="100%" stop-color="#030609" stop-opacity="0.95"/>
+            </linearGradient>
+        </defs>
+        <rect width="1440" height="280" fill="url(#topVig)"/>
+        <rect y="620" width="1440" height="280" fill="url(#botVig)"/>
+    </svg>
+</div>
 
-            <!-- ── Moon ── -->
-            <circle cx="1280" cy="90" r="50" fill="url(#moonGlow)"/>
-            <circle cx="1280" cy="90" r="28" fill="#1a2d45" opacity="0.7"/>
-            <circle cx="1280" cy="90" r="26" fill="none" stroke="#d8c070" stroke-width="1" opacity="0.25"/>
-            <circle cx="1268" cy="82" r="2"  fill="#d8c070" opacity="0.15"/>
-            <circle cx="1288" cy="96" r="3"  fill="#d8c070" opacity="0.10"/>
-            <circle cx="1275" cy="100" r="1.5" fill="#d8c070" opacity="0.12"/>
-
-            <!-- ══════════════════════════════════
-                 SEISMIC REFLECTION LINES (mid)
-            ══════════════════════════════════ -->
-            <!-- Layer 1: deepest -->
-            <polyline fill="none" stroke="url(#seismicGrad2)" stroke-width="1.2" opacity="0.5"
-                points="0,620 80,620 110,605 130,635 150,610 170,630 190,618 230,618 260,610 280,628 300,612 320,625 340,618 400,618 430,608 450,632 470,614 490,628 510,618 560,618 590,605 610,635 630,610 650,630 670,618 730,618 760,608 780,628 800,612 820,625 840,618 920,618 950,605 970,635 990,610 1010,630 1030,618 1080,618 1110,608 1130,632 1150,614 1170,628 1190,618 1280,618 1310,610 1330,628 1350,612 1370,625 1390,618 1440,618"/>
-
-            <!-- Layer 2 -->
-            <polyline fill="none" stroke="url(#seismicGrad)" stroke-width="1.4" opacity="0.4"
-                points="0,660 60,660 85,642 105,678 125,648 145,672 165,658 220,658 250,645 268,675 285,650 305,668 325,658 390,658 415,643 435,679 455,649 475,671 495,658 560,658 590,642 610,678 630,648 650,672 670,658 740,658 768,645 785,675 805,650 825,668 845,658 920,658 950,643 970,679 990,649 1010,671 1030,658 1100,658 1128,642 1148,678 1168,648 1188,672 1208,658 1300,658 1330,645 1350,675 1370,650 1390,668 1410,658 1440,658"/>
-
-            <!-- Layer 3: shallowest reflection -->
-            <polyline fill="none" stroke="url(#seismicGrad2)" stroke-width="1" opacity="0.3"
-                points="0,700 50,700 70,688 90,714 110,694 130,708 150,700 210,700 235,690 252,712 268,696 285,706 300,700 380,700 405,688 422,714 438,694 455,708 470,700 540,700 568,688 588,714 608,694 628,708 648,700 730,700 755,690 772,712 788,696 805,706 820,700 910,700 935,688 952,714 968,694 985,708 1000,700 1080,700 1108,688 1128,714 1148,694 1168,708 1188,700 1280,700 1305,690 1322,712 1338,696 1355,706 1370,700 1440,700"/>
-
-            <!-- ══════════════════════════════════
-                 GROUND / HORIZON
-            ══════════════════════════════════ -->
-            <rect x="0" y="730" width="1440" height="170" fill="url(#groundGrad)"/>
-            <!-- Horizon glow line -->
-            <line x1="0" y1="730" x2="1440" y2="730" stroke="#1e4068" stroke-width="1.5" opacity="0.6"/>
-            <line x1="0" y1="731" x2="1440" y2="731" stroke="#c8a43c" stroke-width="0.5" opacity="0.12"/>
-
-            <!-- Distant hills / terrain -->
-            <path d="M0,730 Q180,715 360,728 Q540,740 720,722 Q900,710 1080,726 Q1260,738 1440,720 L1440,730 Z"
-                  fill="#0a1828" opacity="0.8"/>
-
-            <!-- ══════════════════════════════════
-                 DRILLING RIG — CENTER LARGE
-            ══════════════════════════════════ -->
-            <!-- Center glow -->
-            <ellipse cx="720" cy="730" rx="180" ry="60" fill="url(#glowL)" opacity="0.7"/>
-
-            <g transform="translate(660, 310)" opacity="0.85">
-                <!-- Derrick crown -->
-                <polygon points="60,0 10,120 110,120" fill="#1a3a60" stroke="#2a5080" stroke-width="1.2"/>
-                <!-- Left leg -->
-                <line x1="10" y1="120" x2="0"   y2="420" stroke="#2a5080" stroke-width="4"/>
-                <!-- Right leg -->
-                <line x1="110" y1="120" x2="120" y2="420" stroke="#2a5080" stroke-width="4"/>
-                <!-- Leg braces -->
-                <line x1="0"   y1="420" x2="-20" y2="420" stroke="#1e4068" stroke-width="6"/>
-                <line x1="120" y1="420" x2="140" y2="420" stroke="#1e4068" stroke-width="6"/>
-                <!-- Horizontal braces -->
-                <line x1="14"  y1="168" x2="106" y2="168" stroke="#234a78" stroke-width="1.5"/>
-                <line x1="8"   y1="232" x2="112" y2="232" stroke="#234a78" stroke-width="1.5"/>
-                <line x1="4"   y1="296" x2="116" y2="296" stroke="#234a78" stroke-width="1.5"/>
-                <line x1="0"   y1="360" x2="120" y2="360" stroke="#234a78" stroke-width="1.5"/>
-                <!-- Diagonal braces -->
-                <line x1="14"  y1="168" x2="8"   y2="232" stroke="#1e3a60" stroke-width="1"/>
-                <line x1="106" y1="168" x2="112" y2="232" stroke="#1e3a60" stroke-width="1"/>
-                <line x1="8"   y1="232" x2="116" y2="296" stroke="#1e3a60" stroke-width="1"/>
-                <line x1="112" y1="232" x2="4"   y2="296" stroke="#1e3a60" stroke-width="1"/>
-                <line x1="4"   y1="296" x2="120" y2="360" stroke="#1e3a60" stroke-width="1"/>
-                <line x1="116" y1="296" x2="0"   y2="360" stroke="#1e3a60" stroke-width="1"/>
-                <!-- Crown block -->
-                <rect x="45" y="-6" width="30" height="12" fill="#2a5080" rx="2"/>
-                <!-- Travel block / hook -->
-                <rect x="52" y="30" width="16" height="10" fill="#1e4068" rx="2"/>
-                <line x1="60" y1="0" x2="60" y2="30" stroke="#3a6090" stroke-width="1.5"/>
-                <!-- Substructure -->
-                <rect x="-10" y="420" width="140" height="32" fill="#122030" rx="3"/>
-                <rect x="-20" y="450" width="160" height="18" fill="#0e1828" rx="2"/>
-                <!-- BOP stack -->
-                <rect x="46" y="400" width="28" height="24" fill="#1a3050" rx="4"/>
-                <rect x="42" y="415" width="36" height="10" fill="#162840" rx="2"/>
-                <!-- Drill string -->
-                <rect x="57" y="36" width="6" height="370" fill="#1a3a60" opacity="0.9"/>
-                <!-- Kelly / swivel -->
-                <rect x="52" y="110" width="16" height="22" fill="#1e4070" rx="3"/>
-                <!-- Mud return line -->
-                <path d="M63,468 Q40,490 20,510" fill="none" stroke="#1a4060" stroke-width="4" opacity="0.5"/>
-                <!-- Drill floor tool box -->
-                <rect x="120" y="440" width="30" height="18" fill="#0e2038" rx="3"/>
-                <!-- Catwalk -->
-                <rect x="-40" y="464" width="50" height="6" fill="#0e1828" rx="1"/>
-                <!-- Beacon light -->
-                <circle cx="60" cy="-6" r="3.5" fill="#ffcc44" filter="url(#glow)"/>
-            </g>
-
-            <!-- ══════════════════════════════════
-                 DRILLING RIG — LEFT (smaller)
-            ══════════════════════════════════ -->
-            <ellipse cx="250" cy="730" rx="120" ry="40" fill="url(#glowL)" opacity="0.5"/>
-
-            <g transform="translate(200, 440)" opacity="0.65">
-                <polygon points="40,0 5,85 75,85" fill="#162840" stroke="#1e3a5a" stroke-width="1"/>
-                <line x1="5"  y1="85" x2="-5"  y2="290" stroke="#1e3a5a" stroke-width="3"/>
-                <line x1="75" y1="85" x2="85"  y2="290" stroke="#1e3a5a" stroke-width="3"/>
-                <line x1="9"  y1="118" x2="71" y2="118" stroke="#1a3458" stroke-width="1.2"/>
-                <line x1="4"  y1="160" x2="76" y2="160" stroke="#1a3458" stroke-width="1.2"/>
-                <line x1="0"  y1="205" x2="80" y2="205" stroke="#1a3458" stroke-width="1.2"/>
-                <line x1="9"  y1="118" x2="76" y2="160" stroke="#162840" stroke-width="0.8"/>
-                <line x1="71" y1="118" x2="0"  y2="205" stroke="#162840" stroke-width="0.8"/>
-                <line x1="4"  y1="160" x2="80" y2="205" stroke="#162840" stroke-width="0.8"/>
-                <rect x="-8"  y="290" width="96" height="22" fill="#0e1828" rx="2"/>
-                <rect x="-14" y="310" width="108" height="12" fill="#0a1420" rx="1"/>
-                <rect x="35"  y="270" width="10" height="24" fill="#1a3050" rx="2"/>
-                <rect x="37"  y="26"  width="6"  height="250" fill="#162840" opacity="0.8"/>
-                <circle cx="40" cy="-4" r="2.5" fill="#ffcc44" filter="url(#glow)" opacity="0.8"/>
-                <!-- Mud pit indicator -->
-                <rect x="86" y="298" width="24" height="12" fill="#0a1820" rx="2"/>
-            </g>
-
-            <!-- ══════════════════════════════════
-                 DRILLING RIG — RIGHT (medium)
-            ══════════════════════════════════ -->
-            <ellipse cx="1180" cy="730" rx="140" ry="45" fill="url(#glowR)" opacity="0.55"/>
-
-            <g transform="translate(1115, 380)" opacity="0.72">
-                <polygon points="55,0 8,105 102,105" fill="#162840" stroke="#1e3a5a" stroke-width="1"/>
-                <line x1="8"   y1="105" x2="-5"  y2="350" stroke="#1e3a5a" stroke-width="3.5"/>
-                <line x1="102" y1="105" x2="115" y2="350" stroke="#1e3a5a" stroke-width="3.5"/>
-                <line x1="12"  y1="148" x2="98"  y2="148" stroke="#1a3458" stroke-width="1.3"/>
-                <line x1="6"   y1="196" x2="104" y2="196" stroke="#1a3458" stroke-width="1.3"/>
-                <line x1="2"   y1="248" x2="108" y2="248" stroke="#1a3458" stroke-width="1.3"/>
-                <line x1="0"   y1="300" x2="110" y2="300" stroke="#1a3458" stroke-width="1.3"/>
-                <line x1="12"  y1="148" x2="104" y2="196" stroke="#162840" stroke-width="0.9"/>
-                <line x1="98"  y1="148" x2="2"   y2="248" stroke="#162840" stroke-width="0.9"/>
-                <line x1="6"   y1="196" x2="108" y2="248" stroke="#162840" stroke-width="0.9"/>
-                <line x1="2"   y1="248" x2="110" y2="300" stroke="#162840" stroke-width="0.9"/>
-                <rect x="-10"  y="350" width="130" height="26" fill="#0e1828" rx="2"/>
-                <rect x="-16"  y="374" width="142" height="14" fill="#0a1420" rx="1"/>
-                <rect x="47"   y="330" width="16" height="26" fill="#1a3050" rx="3"/>
-                <rect x="49"   y="30"  width="7"  height="308" fill="#162840" opacity="0.9"/>
-                <!-- Flare stack -->
-                <line x1="115" y1="200" x2="138" y2="140" stroke="#1e3a5a" stroke-width="2.5"/>
-                <ellipse cx="139" cy="137" rx="6" ry="4" fill="#ff8820" opacity="0.6" filter="url(#softglow)"/>
-                <circle cx="55"  cy="-4" r="3" fill="#ffcc44" filter="url(#glow)" opacity="0.85"/>
-            </g>
-
-            <!-- ══════════════════════════════════
-                 FAR DISTANT RIGS (silhouettes only)
-            ══════════════════════════════════ -->
-            <!-- Far left -->
-            <g transform="translate(60, 570)" opacity="0.3">
-                <polygon points="22,0 2,65 42,65" fill="#0e2038"/>
-                <line x1="2"  y1="65" x2="-2" y2="160" stroke="#0e2038" stroke-width="2.5"/>
-                <line x1="42" y1="65" x2="46" y2="160" stroke="#0e2038" stroke-width="2.5"/>
-                <rect x="-4" y="160" width="52" height="14" fill="#081420" rx="1"/>
-            </g>
-            <!-- Far right -->
-            <g transform="translate(1340, 540)" opacity="0.28">
-                <polygon points="28,0 2,80 54,80" fill="#0e2038"/>
-                <line x1="2"  y1="80" x2="-3"  y2="190" stroke="#0e2038" stroke-width="2.5"/>
-                <line x1="54" y1="80" x2="59"  y2="190" stroke="#0e2038" stroke-width="2.5"/>
-                <rect x="-6" y="190" width="64" height="16" fill="#081420" rx="1"/>
-            </g>
-            <!-- Mid-right small -->
-            <g transform="translate(980, 590)" opacity="0.22">
-                <polygon points="18,0 2,52 34,52" fill="#0e2038"/>
-                <line x1="2"  y1="52" x2="-1" y2="140" stroke="#0e2038" stroke-width="2"/>
-                <line x1="34" y1="52" x2="37" y2="140" stroke="#0e2038" stroke-width="2"/>
-                <rect x="-3" y="140" width="41" height="11" fill="#081420" rx="1"/>
-            </g>
-
-            <!-- ══════════════════════════════════
-                 PIPELINE (foreground)
-            ══════════════════════════════════ -->
-            <path d="M0,768 Q360,752 720,760 Q1080,768 1440,755"
-                  fill="none" stroke="#1a3050" stroke-width="7" opacity="0.55"/>
-            <path d="M0,768 Q360,752 720,760 Q1080,768 1440,755"
-                  fill="none" stroke="#2a4870" stroke-width="2" opacity="0.4"/>
-            <!-- Pipeline joints -->
-            <rect x="200"  y="756" width="8" height="16" fill="#1e3a60" rx="1" opacity="0.5"/>
-            <rect x="480"  y="755" width="8" height="16" fill="#1e3a60" rx="1" opacity="0.5"/>
-            <rect x="760"  y="757" width="8" height="16" fill="#1e3a60" rx="1" opacity="0.5"/>
-            <rect x="1040" y="756" width="8" height="16" fill="#1e3a60" rx="1" opacity="0.5"/>
-            <rect x="1300" y="754" width="8" height="16" fill="#1e3a60" rx="1" opacity="0.5"/>
-
-            <!-- ══════════════════════════════════
-                 WATER REFLECTION (subtle)
-            ══════════════════════════════════ -->
-            <rect x="0" y="780" width="1440" height="120" fill="#06101c" opacity="0.6"/>
-            <!-- Reflection ripples -->
-            <ellipse cx="250"  cy="790" rx="60"  ry="4" fill="none" stroke="#2a4870" stroke-width="0.8" opacity="0.3"/>
-            <ellipse cx="720"  cy="785" rx="90"  ry="5" fill="none" stroke="#2a4870" stroke-width="0.8" opacity="0.3"/>
-            <ellipse cx="1180" cy="792" rx="70"  ry="4" fill="none" stroke="#2a4870" stroke-width="0.8" opacity="0.3"/>
-
-            <!-- Beacon lights reflected -->
-            <line x1="720" y1="730" x2="720" y2="800" stroke="#ffcc44" stroke-width="1" opacity="0.06"/>
-            <line x1="250" y1="730" x2="250" y2="800" stroke="#ffcc44" stroke-width="1" opacity="0.04"/>
-            <line x1="1180" y1="730" x2="1180" y2="800" stroke="#ffcc44" stroke-width="1" opacity="0.05"/>
-
-            <!-- ══════════════════════════════════
-                 ATMOSPHERIC TOP VIGNETTE
-            ══════════════════════════════════ -->
-            <defs>
-                <linearGradient id="topVig" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%"  stop-color="#030609" stop-opacity="0.9"/>
-                    <stop offset="40%" stop-color="#030609" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="botVig" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%"   stop-color="#030609" stop-opacity="0"/>
-                    <stop offset="100%" stop-color="#030609" stop-opacity="0.95"/>
-                </linearGradient>
-            </defs>
-            <rect width="1440" height="280" fill="url(#topVig)"/>
-            <rect y="620"   width="1440" height="280" fill="url(#botVig)"/>
-        </svg>
-    </div>
-
-    <!-- ══════════════════════════════════════
-         HEADER
-    ══════════════════════════════════════ -->
-    <header>
-        <div class="header-main">
-
-            <!-- RIGHT: University logo -->
-            <div class="logo-wrap">
-                <div class="logo-box" title="لوگوی دانشگاه">
-                    <img src="university_logo.png"
-                         alt="لوگوی دانشگاه"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="logo-fallback" style="display:none;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#c8a43c" stroke-width="1.4">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-                            <polyline points="9 22 9 12 15 12 15 22"/>
-                        </svg>
-                        <span>لوگوی دانشگاه</span>
-                    </div>
+<header>
+    <div class="header-main">
+        <div class="logo-wrap">
+            <div class="logo-box" title="لوگوی دانشگاه">
+                <img src="university_logo.png" alt="لوگوی دانشگاه"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-fallback" style="display:none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c8a43c" stroke-width="1.4">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                    <span>لوگوی دانشگاه</span>
                 </div>
-                <span class="logo-label"></span>
             </div>
-
-            <!-- CENTER: title -->
-            <div class="header-center">
-                <div class="label-phd">پیشنهاد رساله دکتری &nbsp;·&nbsp; جلسه دفاع</div>
-                <div class="thesis-title">
-                    تطبیق دامنه برای شبکه‌های عمیق حافظ حریم خصوصی<br>
-                    جهت پردازش داده‌های اکتشاف مخازن هیدروکربوری
-                </div>
-                <div class="student-row">دانشجو: &nbsp;<strong>علی دانشپور</strong></div>
-            </div>
-
-            <!-- LEFT: Lab logo -->
-            <div class="logo-wrap">
-                <div class="logo-lab" title="لوگوی آزمایشگاه">
-                    <img src="lab_logo.png"
-                         alt="لوگوی آزمایشگاه"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="logo-fallback" style="display:none;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#c8a43c" stroke-width="1.4">
-                            <path d="M9 3h6v11l4 7H5l4-7V3z"/><line x1="9" y1="9" x2="15" y2="9"/>
-                        </svg>
-                        <span>لوگوی آزمایشگاه</span>
-                    </div>
-                </div>
-                <span class="logo-label"></span>
-            </div>
-
+            <span class="logo-label"></span>
         </div>
 
-        <!-- Abstract -->
-        <div class="abstract-wrap">
-            <div class="sec-label">چکیده</div>
-            <div class="abstract-body">
+        <div class="header-center">
+            <div class="label-phd">پیشنهاد رساله دکتری &nbsp;·&nbsp; جلسه دفاع</div>
+            <div class="thesis-title">
+                تطبیق دامنه برای شبکه‌های عمیق حافظ حریم خصوصی<br>
+                جهت پردازش داده‌های اکتشاف مخازن هیدروکربوری
+            </div>
+            <div class="student-row">دانشجو: &nbsp;<strong>علی دانشپور</strong></div>
+        </div>
+
+        <div class="logo-wrap">
+            <div class="logo-lab" title="لوگوی آزمایشگاه">
+                <img src="lab_logo.png" alt="لوگوی آزمایشگاه"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-fallback" style="display:none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c8a43c" stroke-width="1.4">
+                        <path d="M9 3h6v11l4 7H5l4-7V3z"/><line x1="9" y1="9" x2="15" y2="9"/>
+                    </svg>
+                    <span>لوگوی آزمایشگاه</span>
+                </div>
+            </div>
+            <span class="logo-label"></span>
+        </div>
+    </div>
+
+    <div class="abstract-wrap">
+        <div class="sec-label">چکیده</div>
+        <div class="abstract-body">
 اکتشاف کارآمد و کم‌ریسک مخازن هیدروکربوری یکی از چالش‌های راهبردی صنعت نفت و گاز است.
 روش‌های متداول تفسیر داده‌های زمین‌شناسی علی‌رغم توسعه قابل توجه در دهه‌های اخیر، همچنان با محدودیت‌هایی نظیر وابستگی به تخصص افراد خبره، پیچیدگی بالای ساختار مخازن، عدم قطعیت در مدل‌سازی زیرسطحی و هزینه‌های زیاد عملیات اکتشافی مواجه‌اند.
 در سال‌های اخیر، رویکردهای یادگیری عمیق با توانایی استخراج خودکار الگوهای پیچیده از داده‌های حجیم، چشم‌انداز جدیدی برای بهبود فرآیند اکتشاف مخازن هیدروکربوری فراهم کرده‌اند. با این حال، طراحی و توسعه چارچوب‌هایی کارآمد، بهینه و امن همچنان از چالش‌های اساسی این حوزه به شمار می‌رود.
@@ -947,308 +560,469 @@
 در فاز سوم، الزامات اصلی برای پیاده‌سازی صنعتی سامانه‌های هوشمند بررسی می‌شود. حفظ محرمانگی داده‌ها از طریق یادگیری مشارکتی امکان آموزش مدل‌ها بدون تبادل اطلاعات حساس را فراهم می‌کند. 
 در فاز چهارم، هدف توسعه‌ی یک مجموعه‌داده‌ی مصنوعی با استفاده از مدل‌های انتشار است که امکان بهره‌برداری هم‌زمان از داده‌های چاه‌پیمایی و تصاویر مغزه را برای یک میدان را فراهم سازد. تولید مجموعه داده مصنوعی می‌تواند به‌طور موثری مشکل عدم‌توازن در داده‌های زمین‌شناسی را برطرف نماید. 
 در فاز نهایی پژوهش، کارآمدی و تعمیم‌پذیری چارچوب‌های طراحی‌شده در فازهای گذشته با پیاده‌سازی آن‌ها بر دیتاست‌های مختلف در حوزه اکتشاف مخازن هیدروکربوری مورد ارزیابی قرار گیرد.
-تجمیع فازهای اشاره‌شده، موجب افزایش قابلیت اطمینان، پایداری و پذیرش عملی مدل‌های هوش مصنوعی در کاربردهای اکتشاف و ارزیابی مخازن هیدروکربوری می‌شود.
-            </div>
-            <div class="abstract-note"></div>
-        </div>
-
-        <!-- Download -->
-        <div class="download-bar">
-            <span class="dl-label">دریافت متن کامل پیشنهاد رساله:</span>
-            <a class="btn-dl" href="proposal.pdf" download="پیشنهاد رساله دکتری - علی دانشپور.pdf">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-                    <polyline points="7 10 12 15 17 10"/>
-                    <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-                دریافت فایل PDF پیشنهاد رساله
-            </a>
-        </div>
-    </header>
-
-    <!-- ══════════════════════════════════════
-         MAIN
-    ══════════════════════════════════════ -->
-    <main>
-        <div class="container">
-
-            <!-- TIME SLOTS -->
-            <div class="slots-section">
-                <div class="sec-header">
-                    <div class="sec-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <polyline points="12 6 12 12 16 14"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="sec-heading">زمان‌های پیشنهادی برای دفاع</div>
-                        <div class="sec-sub">لطفاً در کارت مربوطه، زمان‌هایی را که می‌توانید حضور داشته باشید علامت‌گذاری کنید</div>
-                    </div>
-                </div>
-                <div class="slots-grid" id="slotsDisplay"></div>
-            </div>
-
-            <div class="divider"></div>
-
-            <!-- PROFESSORS -->
-            <div>
-                <div class="sec-header" style="margin-bottom:32px;">
-                    <div class="sec-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="sec-heading">اعلام زمان توسط اساتید محترم</div>
-                        <div class="sec-sub">لطفاً پس از انتخاب زمان‌های موردنظر خود، دکمه «ثبت» را فشار داده و رمز اختصاصی خود را وارد نمایید</div>
-                    </div>
-                </div>
-                <div id="profsContainer"></div>
-            </div>
-
-            <!-- SUMMARY -->
-            <div class="summary-wrap">
-                <div class="sec-label">خلاصه وضعیت انتخاب‌ها</div>
-                <div class="summary-grid" id="summaryGrid"></div>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        سیستم زمان‌بندی دفاع    &mdash; <strong style="color:var(--gold);">علی دانشپور</strong> &mdash; ۱۴۰۵
-    </footer>
-
-    <!-- ══════════════════════════════════════
-         PASSWORD MODAL
-    ══════════════════════════════════════ -->
-    <div class="overlay" id="overlay">
-        <div class="modal">
-            <div class="modal-icon-wrap">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                    <path d="M7 11V7a5 5 0 0110 0v4"/>
-                </svg>
-            </div>
-            <div class="modal-ttl"  id="mTitle">تأیید هویت</div>
-            <div class="modal-desc" id="mDesc">برای ثبت انتخاب‌های خود، رمز اختصاصی را وارد نمایید.</div>
-            <input type="password" class="pw-input" id="pwInput" maxlength="30" placeholder="····" autocomplete="off">
-            <div class="pw-err" id="pwErr"></div>
-            <div class="modal-btns">
-                <button class="mbtn mbtn-cancel"  onclick="closeModal()">انصراف</button>
-                <button class="mbtn mbtn-confirm" onclick="confirmPw()">تأیید و ثبت</button>
-            </div>
-        </div>
+تجمیع فازهای اشاره‌شده، موجب افزایش قابلیت اطمینان، پایداری و پذیرش عملی مدل‌های هوش مصنوعی در کاربردهای اکتشاف و ارزیابی مخازن هیدروکربوری می‌شود.         </div>
     </div>
 
-    <!-- ══════════════════════════════════════
-         SCRIPT
-    ══════════════════════════════════════ -->
-    <script>
-    /* ─── DATA ─── */
-    const TIME_SLOTS = [
-        'چهارشنبه ۱۳ خرداد &mdash; ساعت ۹ تا ۱۲',
-        'چهارشنبه ۱۳ خرداد &mdash; ساعت ۱۵ تا ۱۸',
-        'شنبه ۱۶ خرداد &mdash; ساعت ۹ تا ۱۲',
-        'شنبه ۱۶ خرداد &mdash; ساعت ۱۵ تا ۱۸',
-        'یک‌شنبه ۱۷ خرداد &mdash; ساعت ۱۵ تا ۱۸',
-        'دوشنبه ۱۸ خرداد &mdash; ساعت ۱۵ تا ۱۸',
-        'سه‌شنبه ۱۹ خرداد &mdash; ساعت ۱۵ تا ۱۸' ,
-        'چهارشنبه ۲۰ خرداد &mdash; ساعت ۱۵ تا ۱۸' 
-    ];
-    const NUMS_FA = ['۱','۲','۳','۴','۵','۶','۷','۸'];
+    <div class="download-bar">
+        <span class="dl-label">دریافت متن کامل پیشنهاد رساله:</span>
+        <a class="btn-dl" href="proposal.pdf" download="پیشنهاد رساله دکتری - علی دانشپور.pdf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            دریافت فایل PDF پیشنهاد رساله
+        </a>
+    </div>
+</header>
 
-    const PROFESSORS = [
-        { id:'sup1', name:'دکتر مهدی قطعی', role:'استاد راهنمای اول',  type:'supervisor', pw:'1234' },
-        { id:'sup2', name:'دکتر محمدحسن شیرعلی شهرضا', role:'استاد راهنمای دوم',  type:'supervisor', pw:'1234' },
-        { id:'adv1', name:'دکتر علی اکبر نوریان', role:'استاد مشاور',         type:'advisor',    pw:'1234' },
-        { id:'int1', name:'دکتر مصطفی شمسی', role:'داور داخلی اول',      type:'internal',   pw:'1234' },
-        { id:'int2', name:'دکتر فاطمه زارع', role:'داور داخلی دوم',      type:'internal',   pw:'1234' },
-        { id:'ext1', name:'دکتر مهدی تیموری', role:'داور خارجی اول',      type:'external',   pw:'1234' },
-        { id:'ext2', name:'دکتر محمد شریفی', role:'داور خارجی دوم',      type:'external',   pw:'1234' },
-    ];
-
-    const ROLE_GROUPS = [
-        { label:'— استاد راهنمای اول —',         ids:['sup1'],        cols:1, large:true  },
-        { label:'— استاد راهنمای دوم و استاد مشاور —', ids:['sup2','adv1'], cols:2, large:false },
-        { label:'— داوران داخلی —',               ids:['int1','int2'], cols:2, large:false },
-        { label:'— داوران خارجی —',               ids:['ext1','ext2'], cols:2, large:false },
-    ];
-
-    /* ─── STATE ─── */
-    function getState(id) {
-        try { const s = localStorage.getItem('ds_'+id); if(s) return JSON.parse(s); } catch {}
-        return { sel:[], locked:false };
-    }
-    function setState(id, st) { localStorage.setItem('ds_'+id, JSON.stringify(st)); }
-
-    /* ─── RENDER SLOTS DISPLAY ─── */
-    function renderSlotsDisplay() {
-        document.getElementById('slotsDisplay').innerHTML = TIME_SLOTS.map((t,i) => `
-            <div class="slot-badge">
-                <span class="slot-badge-num">${NUMS_FA[i]}</span>
-                <span class="slot-badge-icon">🗓</span>
-                ${t}
-            </div>`).join('');
-    }
-
-    /* ─── RENDER PROFESSORS ─── */
-    function renderProfessors() {
-        let html = '';
-        for (const g of ROLE_GROUPS) {
-            html += `<div class="role-group">
-                <div class="role-group-label">${g.label}</div>
-                <div class="profs-row col${g.cols}">`;
-            for (const id of g.ids) {
-                const p = PROFESSORS.find(x => x.id === id);
-                html += buildCard(p, getState(id), g.large);
-            }
-            html += `</div></div>`;
-        }
-        document.getElementById('profsContainer').innerHTML = html;
-    }
-
-    function buildCard(p, st, isLarge) {
-        const locked = st.locked;
-        const slotsHtml = TIME_SLOTS.map((t,i) => {
-            const sel = st.sel.includes(i);
-            return `<div class="sl-item ${sel?'sl-selected':''} ${locked?'sl-disabled':''}"
-                 ${locked ? '' : `onclick="toggleSlot('${p.id}',${i})"`}>
-                <div class="sl-check">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
-                        <polyline points="20 6 9 17 4 12"/>
+<main>
+    <div class="container">
+        <div class="slots-section">
+            <div class="sec-header">
+                <div class="sec-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
                     </svg>
                 </div>
-                <span class="sl-time">${t}</span>
-            </div>`;
-        }).join('');
-
-        const btn = locked
-            ? `<button class="btn-action btn-edit-act" onclick="openModal('${p.id}','edit')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
-                    <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>اصلاح انتخاب‌ها</button>`
-            : `<button class="btn-action btn-submit-act" onclick="openModal('${p.id}','submit')">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <rect x="3" y="11" width="18" height="11" rx="2"/>
-                    <path d="M7 11V7a5 5 0 0110 0v4"/>
-                </svg>ثبت انتخاب‌ها</button>`;
-
-        return `<div class="prof-card ${locked?'locked':''} ${isLarge?'large-card':''}"
-             data-role="${p.type}" id="card-${p.id}">
-            <div class="pcard-head">
                 <div>
-                    <div class="pname">${p.name}</div>
-                    <span class="role-tag">${p.role}</span>
-                </div>
-                <div class="locked-badge">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <polyline points="20 6 9 17 4 12"/>
-                    </svg>ثبت شده
+                    <div class="sec-heading">زمان‌های پیشنهادی برای دفاع</div>
+                    <div class="sec-sub">لطفاً در کارت مربوطه، زمان‌هایی را که می‌توانید حضور داشته باشید علامت‌گذاری کنید</div>
                 </div>
             </div>
-            <div class="pcard-body">
-                <div class="slots-choose-label">لطفا زمان‌های مناسب خود را انتخاب کنید:</div>
-                <div class="slots-list">${slotsHtml}</div>
+            <div class="slots-grid" id="slotsDisplay"></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div>
+            <div class="sec-header" style="margin-bottom:32px;">
+                <div class="sec-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="sec-heading">اعلام زمان توسط اساتید محترم</div>
+                    <div class="sec-sub">لطفاً پس از انتخاب زمان‌های موردنظر خود، دکمه «ثبت» را فشار داده و رمز اختصاصی خود را وارد نمایید</div>
+                </div>
             </div>
-            <div class="pcard-foot">
-                <div class="sel-count">انتخاب‌شده: <strong>${st.sel.length}</strong> زمان</div>
-                ${btn}
-            </div>
-        </div>`;
+            <div id="profsContainer"></div>
+        </div>
+
+        <div class="summary-wrap">
+            <div class="sec-label">خلاصه وضعیت انتخاب‌ها</div>
+            <div class="summary-grid" id="summaryGrid"></div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    سیستم زمان‌بندی دفاع &mdash; <strong style="color:var(--gold);">علی دانشپور</strong> &mdash; ۱۴۰۵
+</footer>
+
+<div class="overlay" id="overlay">
+    <div class="modal">
+        <div class="modal-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+        </div>
+        <div class="modal-ttl"  id="mTitle">تأیید هویت</div>
+        <div class="modal-desc" id="mDesc">برای ثبت انتخاب‌های خود، رمز اختصاصی را وارد نمایید.</div>
+        <input type="password" class="pw-input" id="pwInput" maxlength="30" placeholder="····" autocomplete="off">
+        <div class="pw-err" id="pwErr"></div>
+        <div class="modal-btns">
+            <button class="mbtn mbtn-cancel"  onclick="closeModal()">انصراف</button>
+            <button class="mbtn mbtn-confirm" onclick="confirmPw()">تأیید و ثبت</button>
+        </div>
+    </div>
+</div>
+
+<!-- ADMIN RESET MODAL -->
+<div class="overlay" id="adminOverlay">
+    <div class="modal">
+        <div class="modal-icon-wrap" style="background:rgba(224,64,64,.12); border-color:rgba(224,64,64,.35);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+                <path d="M10 11v6M14 11v6"/>
+                <path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+            </svg>
+        </div>
+        <div class="modal-ttl" style="color:var(--red);">پنل مدیریت</div>
+        <div class="modal-desc">برای پاک کردن تمام اطلاعات اساتید، رمز ادمین را وارد کنید. این عملیات برگشت‌ناپذیر است.</div>
+        <input type="password" class="pw-input" id="adminPwInput" maxlength="40" placeholder="····" autocomplete="off">
+        <div class="pw-err" id="adminPwErr"></div>
+        <div class="modal-btns">
+            <button class="mbtn mbtn-cancel" onclick="closeAdminModal()">انصراف</button>
+            <button class="mbtn" style="background:var(--red);color:#fff;" onclick="confirmAdminReset()">پاک کردن همه</button>
+        </div>
+    </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   SUPABASE CONFIG
+══════════════════════════════════════════ */
+const SUPABASE_URL = 'https://qawkddwrozzobcggrypu.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_YTQ9zpsDR_nGrqM2PRdK2w_Etf5MLNT';
+const API = `${SUPABASE_URL}/rest/v1/selections`;
+
+const headers = {
+    'Content-Type': 'application/json',
+    'apikey': SUPABASE_KEY,
+    'Authorization': `Bearer ${SUPABASE_KEY}`,
+    'Prefer': 'return=representation'
+};
+
+/* ══════════════════════════════════════════
+   DATA
+══════════════════════════════════════════ */
+const TIME_SLOTS = [
+    'چهارشنبه ۱۳ خرداد &mdash; ساعت ۹ تا ۱۲',
+    'چهارشنبه ۱۳ خرداد &mdash; ساعت ۱۵ تا ۱۸',
+    'شنبه ۱۶ خرداد &mdash; ساعت ۹ تا ۱۲',
+    'شنبه ۱۶ خرداد &mdash; ساعت ۱۵ تا ۱۸',
+    'یک‌شنبه ۱۷ خرداد &mdash; ساعت ۱۵ تا ۱۸',
+    'دوشنبه ۱۸ خرداد &mdash; ساعت ۱۵ تا ۱۸',
+    'سه‌شنبه ۱۹ خرداد &mdash; ساعت ۱۵ تا ۱۸',
+    'چهارشنبه ۲۰ خرداد &mdash; ساعت ۱۵ تا ۱۸'
+];
+const NUMS_FA = ['۱','۲','۳','۴','۵','۶','۷','۸'];
+
+const PROFESSORS = [
+    { id:'sup1', name:'دکتر مهدی قطعی',               role:'استاد راهنمای اول',  type:'supervisor', pw:'1234' },
+    { id:'sup2', name:'دکتر محمدحسن شیرعلی شهرضا',    role:'استاد راهنمای دوم',  type:'supervisor', pw:'1234' },
+    { id:'adv1', name:'دکتر علی اکبر نوریان',          role:'استاد مشاور',         type:'advisor',    pw:'1234' },
+    { id:'int1', name:'دکتر مصطفی شمسی',               role:'داور داخلی اول',      type:'internal',   pw:'1234' },
+    { id:'int2', name:'دکتر فاطمه زارع',               role:'داور داخلی دوم',      type:'internal',   pw:'1234' },
+    { id:'ext1', name:'دکتر مهدی تیموری',              role:'داور خارجی اول',      type:'external',   pw:'1234' },
+    { id:'ext2', name:'دکتر محمد شریفی',               role:'داور خارجی دوم',      type:'external',   pw:'1234' },
+];
+
+const ROLE_GROUPS = [
+    { label:'— استاد راهنمای اول —',               ids:['sup1'],        cols:1, large:true  },
+    { label:'— استاد راهنمای دوم و استاد مشاور —', ids:['sup2','adv1'], cols:2, large:false },
+    { label:'— داوران داخلی —',                     ids:['int1','int2'], cols:2, large:false },
+    { label:'— داوران خارجی —',                     ids:['ext1','ext2'], cols:2, large:false },
+];
+
+/* ══════════════════════════════════════════
+   IN-MEMORY STATE  (source of truth)
+══════════════════════════════════════════ */
+const state = {};
+PROFESSORS.forEach(p => { state[p.id] = { sel: [], locked: false }; });
+
+/* ══════════════════════════════════════════
+   SUPABASE HELPERS
+══════════════════════════════════════════ */
+async function dbLoad() {
+    const res = await fetch(API, { headers });
+    if (!res.ok) throw new Error(await res.text());
+    return await res.json();   // array of rows
+}
+
+async function dbUpsert(profId) {
+    const st = state[profId];
+    const res = await fetch(API, {
+        method: 'POST',
+        headers: { ...headers, 'Prefer': 'resolution=merge-duplicates,return=representation' },
+        body: JSON.stringify({
+            prof_id: profId,
+            selected_slots: st.sel,
+            locked: st.locked,
+            updated_at: new Date().toISOString()
+        })
+    });
+    if (!res.ok) throw new Error(await res.text());
+}
+
+/* ══════════════════════════════════════════
+   SYNC INDICATOR
+══════════════════════════════════════════ */
+let syncTimer = null;
+function showSync(status, msg) {
+    const bar  = document.getElementById('syncBar');
+    const dot  = document.getElementById('syncDot');
+    const text = document.getElementById('syncText');
+    dot.className  = `sync-dot ${status}`;
+    text.textContent = msg;
+    bar.classList.add('show');
+    clearTimeout(syncTimer);
+    if (status !== 'saving') {
+        syncTimer = setTimeout(() => bar.classList.remove('show'), 2200);
     }
+}
 
-    function toggleSlot(profId, slotIdx) {
-        const st = getState(profId);
-        if (st.locked) return;
-        const pos = st.sel.indexOf(slotIdx);
-        if (pos === -1) st.sel.push(slotIdx); else st.sel.splice(pos, 1);
-        setState(profId, st);
-        refreshCard(profId);
-        updateSummary();
-    }
+/* ══════════════════════════════════════════
+   RENDER
+══════════════════════════════════════════ */
+function renderSlotsDisplay() {
+    document.getElementById('slotsDisplay').innerHTML = TIME_SLOTS.map((t,i) => `
+        <div class="slot-badge">
+            <span class="slot-badge-num">${NUMS_FA[i]}</span>
+            <span class="slot-badge-icon">🗓</span>
+            ${t}
+        </div>`).join('');
+}
 
-    function refreshCard(profId) {
-        const p = PROFESSORS.find(x => x.id === profId);
-        const g = ROLE_GROUPS.find(g => g.ids.includes(profId));
-        const st = getState(profId);
-        const old = document.getElementById('card-'+profId);
-        if (!old) return;
-        const tmp = document.createElement('div');
-        tmp.innerHTML = buildCard(p, st, g ? g.large : false).trim();
-        old.parentNode.replaceChild(tmp.firstElementChild, old);
-    }
-
-    /* ─── MODAL ─── */
-    let mState = { profId:null, action:null };
-
-    function openModal(profId, action) {
-        mState = { profId, action };
-        document.getElementById('mTitle').textContent = action==='submit' ? 'ثبت انتخاب‌ها' : 'اصلاح انتخاب‌ها';
-        document.getElementById('mDesc').textContent  = action==='submit'
-            ? 'پس از تأیید رمز، انتخاب‌های شما ذخیره و قفل می‌شود.'
-            : 'برای باز کردن قفل و ویرایش مجدد، رمز خود را وارد کنید.';
-        document.getElementById('pwInput').value = '';
-        document.getElementById('pwErr').textContent = '';
-        document.getElementById('overlay').classList.add('show');
-        setTimeout(() => document.getElementById('pwInput').focus(), 120);
-    }
-
-    function closeModal() { document.getElementById('overlay').classList.remove('show'); }
-
-    function confirmPw() {
-        const pw = document.getElementById('pwInput').value.trim();
-        const p  = PROFESSORS.find(x => x.id === mState.profId);
-        if (pw !== p.pw) {
-            document.getElementById('pwErr').textContent = '✕  رمز وارد شده اشتباه است. لطفاً دوباره تلاش کنید.';
-            document.getElementById('pwInput').value = '';
-            document.getElementById('pwInput').focus();
-            return;
+function renderProfessors() {
+    let html = '';
+    for (const g of ROLE_GROUPS) {
+        html += `<div class="role-group">
+            <div class="role-group-label">${g.label}</div>
+            <div class="profs-row col${g.cols}">`;
+        for (const id of g.ids) {
+            const p = PROFESSORS.find(x => x.id === id);
+            html += buildCard(p, state[id], g.large);
         }
-        const st = getState(mState.profId);
-        st.locked = mState.action === 'submit';
-        setState(mState.profId, st);
-        closeModal();
-        refreshCard(mState.profId);
+        html += `</div></div>`;
+    }
+    document.getElementById('profsContainer').innerHTML = html;
+}
+
+function buildCard(p, st, isLarge) {
+    const locked = st.locked;
+    const slotsHtml = TIME_SLOTS.map((t,i) => {
+        const sel = st.sel.includes(i);
+        return `<div class="sl-item ${sel?'sl-selected':''} ${locked?'sl-disabled':''}"
+             ${locked ? '' : `onclick="toggleSlot('${p.id}',${i})"`}>
+            <div class="sl-check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+            </div>
+            <span class="sl-time">${t}</span>
+        </div>`;
+    }).join('');
+
+    const btn = locked
+        ? `<button class="btn-action btn-edit-act" onclick="openModal('${p.id}','edit')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>اصلاح انتخاب‌ها</button>`
+        : `<button class="btn-action btn-submit-act" onclick="openModal('${p.id}','submit')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect x="3" y="11" width="18" height="11" rx="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>ثبت انتخاب‌ها</button>`;
+
+    return `<div class="prof-card ${locked?'locked':''} ${isLarge?'large-card':''}"
+         data-role="${p.type}" id="card-${p.id}">
+        <div class="pcard-head">
+            <div>
+                <div class="pname">${p.name}</div>
+                <span class="role-tag">${p.role}</span>
+            </div>
+            <div class="locked-badge">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>ثبت شده
+            </div>
+        </div>
+        <div class="pcard-body">
+            <div class="slots-choose-label">لطفا زمان‌های مناسب خود را انتخاب کنید:</div>
+            <div class="slots-list">${slotsHtml}</div>
+        </div>
+        <div class="pcard-foot">
+            <div class="sel-count">انتخاب‌شده: <strong>${st.sel.length}</strong> زمان</div>
+            ${btn}
+        </div>
+    </div>`;
+}
+
+function refreshCard(profId) {
+    const p = PROFESSORS.find(x => x.id === profId);
+    const g = ROLE_GROUPS.find(g => g.ids.includes(profId));
+    const old = document.getElementById('card-'+profId);
+    if (!old) return;
+    const tmp = document.createElement('div');
+    tmp.innerHTML = buildCard(p, state[profId], g ? g.large : false).trim();
+    old.parentNode.replaceChild(tmp.firstElementChild, old);
+}
+
+/* ══════════════════════════════════════════
+   TOGGLE SLOT  (optimistic UI + async save)
+══════════════════════════════════════════ */
+async function toggleSlot(profId, slotIdx) {
+    const st = state[profId];
+    if (st.locked) return;
+    const pos = st.sel.indexOf(slotIdx);
+    if (pos === -1) st.sel.push(slotIdx); else st.sel.splice(pos, 1);
+    refreshCard(profId);
+    updateSummary();
+    try {
+        await dbUpsert(profId);
+    } catch(e) {
+        console.error(e);
+    }
+}
+
+/* ══════════════════════════════════════════
+   MODAL
+══════════════════════════════════════════ */
+let mState = { profId: null, action: null };
+
+function openModal(profId, action) {
+    mState = { profId, action };
+    document.getElementById('mTitle').textContent = action==='submit' ? 'ثبت انتخاب‌ها' : 'اصلاح انتخاب‌ها';
+    document.getElementById('mDesc').textContent  = action==='submit'
+        ? 'پس از تأیید رمز، انتخاب‌های شما ذخیره و قفل می‌شود.'
+        : 'برای باز کردن قفل و ویرایش مجدد، رمز خود را وارد کنید.';
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwErr').textContent = '';
+    document.getElementById('overlay').classList.add('show');
+    setTimeout(() => document.getElementById('pwInput').focus(), 120);
+}
+
+function closeModal() { document.getElementById('overlay').classList.remove('show'); }
+
+async function confirmPw() {
+    const pw = document.getElementById('pwInput').value.trim();
+    const p  = PROFESSORS.find(x => x.id === mState.profId);
+    if (pw !== p.pw) {
+        document.getElementById('pwErr').textContent = '✕  رمز وارد شده اشتباه است. لطفاً دوباره تلاش کنید.';
+        document.getElementById('pwInput').value = '';
+        document.getElementById('pwInput').focus();
+        return;
+    }
+    state[mState.profId].locked = (mState.action === 'submit');
+    closeModal();
+    refreshCard(mState.profId);
+    updateSummary();
+    if (mState.action === 'submit') {
+        showSync('saving', 'در حال ذخیره…');
+        try {
+            await dbUpsert(mState.profId);
+            showSync('saved', 'ذخیره شد ✓');
+        } catch(e) {
+            showSync('error', 'خطا در ذخیره‌سازی');
+            console.error(e);
+        }
+    } else {
+        try { await dbUpsert(mState.profId); } catch(e) { console.error(e); }
+    }
+}
+
+document.getElementById('pwInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter')  confirmPw();
+    if (e.key === 'Escape') closeModal();
+});
+document.getElementById('overlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal();
+});
+
+/* ══════════════════════════════════════════
+   SUMMARY
+══════════════════════════════════════════ */
+function updateSummary() {
+    document.getElementById('summaryGrid').innerHTML = TIME_SLOTS.map((t,i) => {
+        const entries = PROFESSORS
+            .map(p => ({ p, st: state[p.id] }))
+            .filter(({ st }) => st.sel.includes(i));
+        const html = entries.length === 0
+            ? '<span class="sum-none">هنوز انتخابی ثبت نشده</span>'
+            : entries.map(({ p, st }) =>
+                `<span class="sum-entry ${st.locked?'confirmed':''}">
+                    ${st.locked?'✓ ':'◌ '}${p.name} &ndash; ${p.role}
+                 </span>`).join('');
+        return `<div class="sum-slot">
+            <div class="sum-slot-time">${t}</div>
+            <div class="sum-entries">${html}</div>
+        </div>`;
+    }).join('');
+}
+
+/* ══════════════════════════════════════════
+   ADMIN PANEL  (A + D + R simultaneously)
+══════════════════════════════════════════ */
+const ADMIN_PW = 'daneshpourreset';
+const keysHeld = new Set();
+
+document.addEventListener('keydown', e => {
+    keysHeld.add(e.key.toUpperCase());
+    if (keysHeld.has('A') && keysHeld.has('D') && keysHeld.has('R')) {
+        keysHeld.clear();
+        openAdminModal();
+    }
+});
+document.addEventListener('keyup', e => keysHeld.delete(e.key.toUpperCase()));
+
+function openAdminModal() {
+    document.getElementById('adminPwInput').value = '';
+    document.getElementById('adminPwErr').textContent = '';
+    document.getElementById('adminOverlay').classList.add('show');
+    setTimeout(() => document.getElementById('adminPwInput').focus(), 120);
+}
+
+function closeAdminModal() {
+    document.getElementById('adminOverlay').classList.remove('show');
+}
+
+async function confirmAdminReset() {
+    const pw = document.getElementById('adminPwInput').value.trim();
+    if (pw !== ADMIN_PW) {
+        document.getElementById('adminPwErr').textContent = '✕  رمز اشتباه است.';
+        document.getElementById('adminPwInput').value = '';
+        document.getElementById('adminPwInput').focus();
+        return;
+    }
+    closeAdminModal();
+    document.getElementById('loadingOverlay').classList.remove('hidden');
+    try {
+        // Delete all rows from Supabase
+        await fetch(API + '?prof_id=neq.____none____', {
+            method: 'DELETE',
+            headers
+        });
+        // Reset in-memory state
+        PROFESSORS.forEach(p => { state[p.id] = { sel: [], locked: false }; });
+        renderProfessors();
         updateSummary();
+        showSync('saved', 'همه اطلاعات پاک شد ✓');
+    } catch(e) {
+        showSync('error', 'خطا در پاک‌سازی');
+        console.error(e);
     }
+    document.getElementById('loadingOverlay').classList.add('hidden');
+}
 
-    document.getElementById('pwInput').addEventListener('keydown', e => {
-        if (e.key === 'Enter')  confirmPw();
-        if (e.key === 'Escape') closeModal();
-    });
-    document.getElementById('overlay').addEventListener('click', e => {
-        if (e.target === e.currentTarget) closeModal();
-    });
+document.getElementById('adminPwInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter')  confirmAdminReset();
+    if (e.key === 'Escape') closeAdminModal();
+});
+document.getElementById('adminOverlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeAdminModal();
+});
 
-    /* ─── SUMMARY ─── */
-    function updateSummary() {
-        document.getElementById('summaryGrid').innerHTML = TIME_SLOTS.map((t,i) => {
-            const entries = PROFESSORS
-                .map(p => ({ p, st: getState(p.id) }))
-                .filter(({ st }) => st.sel.includes(i));
-            const html = entries.length === 0
-                ? '<span class="sum-none">هنوز انتخابی ثبت نشده</span>'
-                : entries.map(({ p, st }) =>
-                    `<span class="sum-entry ${st.locked?'confirmed':''}">
-                        ${st.locked?'✓ ':'◌ '}${p.name} &ndash; ${p.role}
-                     </span>`).join('');
-            return `<div class="sum-slot">
-                <div class="sum-slot-time">${t}</div>
-                <div class="sum-entries">${html}</div>
-            </div>`;
-        }).join('');
+/* ══════════════════════════════════════════
+   INIT — load from Supabase on page open
+══════════════════════════════════════════ */
+async function init() {
+    try {
+        const rows = await dbLoad();
+        rows.forEach(row => {
+            if (state[row.prof_id]) {
+                state[row.prof_id].sel    = row.selected_slots || [];
+                state[row.prof_id].locked = row.locked || false;
+            }
+        });
+    } catch(e) {
+        console.error('بارگذاری اطلاعات با خطا مواجه شد:', e);
     }
-
-    /* ─── INIT ─── */
     renderSlotsDisplay();
     renderProfessors();
     updateSummary();
-    </script>
+    document.getElementById('loadingOverlay').classList.add('hidden');
+}
+
+init();
+</script>
 </body>
 </html>
