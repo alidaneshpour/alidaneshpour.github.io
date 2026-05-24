@@ -1124,7 +1124,6 @@
                     </svg>
                 </div>
                 <span class="sl-time">${t}</span>
-                <span class="sl-num">زمان ${NUMS_FA[i]}</span>
             </div>`;
         }).join('');
 
@@ -1143,7 +1142,6 @@
         return `<div class="prof-card ${locked?'locked':''} ${isLarge?'large-card':''}"
              data-role="${p.type}" id="card-${p.id}">
             <div class="pcard-head">
-                <div class="avatar">${p.name.charAt(0)}</div>
                 <div>
                     <div class="pname">${p.name}</div>
                     <span class="role-tag">${p.role}</span>
