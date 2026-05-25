@@ -665,24 +665,51 @@
     </div>
 </div>
 
+```html
 <script>
 /* ══════════════════════════════════════════
-   SUPABASE CONFIG
+   URL STATE STORAGE
 ══════════════════════════════════════════ */
-const SUPABASE_URL = 'https://qawkddwrozzobcggrypu.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_YTQ9zpsDR_nGrqM2PRdK2w_Etf5MLNT';
-const API = `${SUPABASE_URL}/rest/v1/selections`;
 
-const headers = {
-    'Content-Type': 'application/json',
-    'apikey': SUPABASE_KEY,
-    'Authorization': `Bearer ${SUPABASE_KEY}`,
-    'Prefer': 'return=representation'
-};
+function encodeState(obj) {
+    return btoa(unescape(encodeURIComponent(JSON.stringify(obj))));
+}
+
+function decodeState(str) {
+    try {
+        return JSON.parse(decodeURIComponent(escape(atob(str))));
+    } catch {
+        return null;
+    }
+}
+
+function saveStateToURL() {
+    const encoded = encodeState(state);
+    history.replaceState(null, '', `${location.pathname}#${encoded}`);
+}
+
+function loadStateFromURL() {
+    if (!location.hash || location.hash.length < 2) return;
+
+    const data = decodeState(location.hash.substring(1));
+
+    if (!data) return;
+
+    Object.keys(state).forEach(id => {
+        if (data[id]) {
+            state[id].sel = Array.isArray(data[id].sel)
+                ? data[id].sel
+                : [];
+
+            state[id].locked = !!data[id].locked;
+        }
+    });
+}
 
 /* ══════════════════════════════════════════
    DATA
 ══════════════════════════════════════════ */
+
 const TIME_SLOTS = [
     'چهارشنبه ۱۳ خرداد &mdash; ساعت ۹ تا ۱۲',
     'چهارشنبه ۱۳ خرداد &mdash; ساعت ۱۵ تا ۱۸',
@@ -693,6 +720,7 @@ const TIME_SLOTS = [
     'سه‌شنبه ۱۹ خرداد &mdash; ساعت ۱۵ تا ۱۸',
     'چهارشنبه ۲۰ خرداد &mdash; ساعت ۱۵ تا ۱۸'
 ];
+
 const NUMS_FA = ['۱','۲','۳','۴','۵','۶','۷','۸'];
 
 const PROFESSORS = [
@@ -713,313 +741,446 @@ const ROLE_GROUPS = [
 ];
 
 /* ══════════════════════════════════════════
-   IN-MEMORY STATE  (source of truth)
+   STATE
 ══════════════════════════════════════════ */
+
 const state = {};
-PROFESSORS.forEach(p => { state[p.id] = { sel: [], locked: false }; });
 
-/* ══════════════════════════════════════════
-   SUPABASE HELPERS
-══════════════════════════════════════════ */
-async function dbLoad() {
-    const res = await fetch(API, { headers });
-    if (!res.ok) throw new Error(await res.text());
-    return await res.json();   // array of rows
-}
-
-async function dbUpsert(profId) {
-    const st = state[profId];
-    const res = await fetch(API, {
-        method: 'POST',
-        headers: { ...headers, 'Prefer': 'resolution=merge-duplicates,return=representation' },
-        body: JSON.stringify({
-            prof_id: profId,
-            selected_slots: st.sel,
-            locked: st.locked,
-            updated_at: new Date().toISOString()
-        })
-    });
-    if (!res.ok) throw new Error(await res.text());
-}
+PROFESSORS.forEach(p => {
+    state[p.id] = {
+        sel: [],
+        locked: false
+    };
+});
 
 /* ══════════════════════════════════════════
    SYNC INDICATOR
 ══════════════════════════════════════════ */
+
 let syncTimer = null;
+
 function showSync(status, msg) {
+
     const bar  = document.getElementById('syncBar');
     const dot  = document.getElementById('syncDot');
     const text = document.getElementById('syncText');
-    dot.className  = `sync-dot ${status}`;
+
+    dot.className = `sync-dot ${status}`;
+
     text.textContent = msg;
+
     bar.classList.add('show');
+
     clearTimeout(syncTimer);
+
     if (status !== 'saving') {
-        syncTimer = setTimeout(() => bar.classList.remove('show'), 2200);
+        syncTimer = setTimeout(() => {
+            bar.classList.remove('show');
+        }, 2200);
     }
 }
 
 /* ══════════════════════════════════════════
    RENDER
 ══════════════════════════════════════════ */
+
 function renderSlotsDisplay() {
-    document.getElementById('slotsDisplay').innerHTML = TIME_SLOTS.map((t,i) => `
+
+    document.getElementById('slotsDisplay').innerHTML =
+        TIME_SLOTS.map((t,i) => `
         <div class="slot-badge">
             <span class="slot-badge-num">${NUMS_FA[i]}</span>
             <span class="slot-badge-icon">🗓</span>
             ${t}
-        </div>`).join('');
+        </div>
+    `).join('');
 }
 
 function renderProfessors() {
+
     let html = '';
+
     for (const g of ROLE_GROUPS) {
-        html += `<div class="role-group">
+
+        html += `
+        <div class="role-group">
             <div class="role-group-label">${g.label}</div>
-            <div class="profs-row col${g.cols}">`;
+            <div class="profs-row col${g.cols}">
+        `;
+
         for (const id of g.ids) {
+
             const p = PROFESSORS.find(x => x.id === id);
+
             html += buildCard(p, state[id], g.large);
         }
-        html += `</div></div>`;
+
+        html += `
+            </div>
+        </div>`;
     }
+
     document.getElementById('profsContainer').innerHTML = html;
 }
 
 function buildCard(p, st, isLarge) {
+
     const locked = st.locked;
+
     const slotsHtml = TIME_SLOTS.map((t,i) => {
+
         const sel = st.sel.includes(i);
-        return `<div class="sl-item ${sel?'sl-selected':''} ${locked?'sl-disabled':''}"
-             ${locked ? '' : `onclick="toggleSlot('${p.id}',${i})"`}>
+
+        return `
+        <div class="sl-item ${sel?'sl-selected':''} ${locked?'sl-disabled':''}"
+            ${locked ? '' : `onclick="toggleSlot('${p.id}',${i})"`}>
             <div class="sl-check">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5">
                     <polyline points="20 6 9 17 4 12"/>
                 </svg>
             </div>
             <span class="sl-time">${t}</span>
-        </div>`;
+        </div>
+        `;
     }).join('');
 
     const btn = locked
-        ? `<button class="btn-action btn-edit-act" onclick="openModal('${p.id}','edit')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
-                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
-            </svg>اصلاح انتخاب‌ها</button>`
-        : `<button class="btn-action btn-submit-act" onclick="openModal('${p.id}','submit')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <rect x="3" y="11" width="18" height="11" rx="2"/>
-                <path d="M7 11V7a5 5 0 0110 0v4"/>
-            </svg>ثبت انتخاب‌ها</button>`;
+        ? `
+        <button class="btn-action btn-edit-act"
+            onclick="openModal('${p.id}','edit')">
+            اصلاح انتخاب‌ها
+        </button>
+        `
+        : `
+        <button class="btn-action btn-submit-act"
+            onclick="openModal('${p.id}','submit')">
+            ثبت انتخاب‌ها
+        </button>
+        `;
 
-    return `<div class="prof-card ${locked?'locked':''} ${isLarge?'large-card':''}"
-         data-role="${p.type}" id="card-${p.id}">
+    return `
+    <div class="prof-card ${locked?'locked':''} ${isLarge?'large-card':''}"
+        data-role="${p.type}" id="card-${p.id}">
+
         <div class="pcard-head">
+
             <div>
                 <div class="pname">${p.name}</div>
                 <span class="role-tag">${p.role}</span>
             </div>
+
             <div class="locked-badge">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <polyline points="20 6 9 17 4 12"/>
-                </svg>ثبت شده
+                ✓ ثبت شده
             </div>
+
         </div>
+
         <div class="pcard-body">
-            <div class="slots-choose-label">لطفا زمان‌های مناسب خود را انتخاب کنید:</div>
-            <div class="slots-list">${slotsHtml}</div>
+
+            <div class="slots-choose-label">
+                لطفا زمان‌های مناسب خود را انتخاب کنید:
+            </div>
+
+            <div class="slots-list">
+                ${slotsHtml}
+            </div>
+
         </div>
+
         <div class="pcard-foot">
-            <div class="sel-count">انتخاب‌شده: <strong>${st.sel.length}</strong> زمان</div>
+
+            <div class="sel-count">
+                انتخاب‌شده:
+                <strong>${st.sel.length}</strong>
+                زمان
+            </div>
+
             ${btn}
+
         </div>
-    </div>`;
+
+    </div>
+    `;
 }
 
 function refreshCard(profId) {
+
     const p = PROFESSORS.find(x => x.id === profId);
+
     const g = ROLE_GROUPS.find(g => g.ids.includes(profId));
+
     const old = document.getElementById('card-'+profId);
+
     if (!old) return;
+
     const tmp = document.createElement('div');
-    tmp.innerHTML = buildCard(p, state[profId], g ? g.large : false).trim();
+
+    tmp.innerHTML =
+        buildCard(p, state[profId], g ? g.large : false).trim();
+
     old.parentNode.replaceChild(tmp.firstElementChild, old);
 }
 
 /* ══════════════════════════════════════════
-   TOGGLE SLOT  (optimistic UI + async save)
+   TOGGLE SLOT
 ══════════════════════════════════════════ */
-async function toggleSlot(profId, slotIdx) {
+
+function toggleSlot(profId, slotIdx) {
+
     const st = state[profId];
+
     if (st.locked) return;
+
     const pos = st.sel.indexOf(slotIdx);
-    if (pos === -1) st.sel.push(slotIdx); else st.sel.splice(pos, 1);
-    refreshCard(profId);
-    updateSummary();
-    try {
-        await dbUpsert(profId);
-    } catch(e) {
-        console.error(e);
+
+    if (pos === -1) {
+        st.sel.push(slotIdx);
+    } else {
+        st.sel.splice(pos, 1);
     }
+
+    refreshCard(profId);
+
+    updateSummary();
+
+    saveStateToURL();
 }
 
 /* ══════════════════════════════════════════
    MODAL
 ══════════════════════════════════════════ */
-let mState = { profId: null, action: null };
+
+let mState = {
+    profId: null,
+    action: null
+};
 
 function openModal(profId, action) {
+
     mState = { profId, action };
-    document.getElementById('mTitle').textContent = action==='submit' ? 'ثبت انتخاب‌ها' : 'اصلاح انتخاب‌ها';
-    document.getElementById('mDesc').textContent  = action==='submit'
-        ? 'پس از تأیید رمز، انتخاب‌های شما ذخیره و قفل می‌شود.'
-        : 'برای باز کردن قفل و ویرایش مجدد، رمز خود را وارد کنید.';
+
+    document.getElementById('mTitle').textContent =
+        action==='submit'
+            ? 'ثبت انتخاب‌ها'
+            : 'اصلاح انتخاب‌ها';
+
+    document.getElementById('mDesc').textContent =
+        action==='submit'
+            ? 'پس از تأیید رمز، انتخاب‌های شما ذخیره و قفل می‌شود.'
+            : 'برای باز کردن قفل و ویرایش مجدد، رمز خود را وارد کنید.';
+
     document.getElementById('pwInput').value = '';
+
     document.getElementById('pwErr').textContent = '';
+
     document.getElementById('overlay').classList.add('show');
-    setTimeout(() => document.getElementById('pwInput').focus(), 120);
+
+    setTimeout(() => {
+        document.getElementById('pwInput').focus();
+    }, 120);
 }
 
-function closeModal() { document.getElementById('overlay').classList.remove('show'); }
+function closeModal() {
+    document.getElementById('overlay').classList.remove('show');
+}
 
-async function confirmPw() {
+function confirmPw() {
+
     const pw = document.getElementById('pwInput').value.trim();
-    const p  = PROFESSORS.find(x => x.id === mState.profId);
+
+    const p = PROFESSORS.find(x => x.id === mState.profId);
+
     if (pw !== p.pw) {
-        document.getElementById('pwErr').textContent = '✕  رمز وارد شده اشتباه است. لطفاً دوباره تلاش کنید.';
+
+        document.getElementById('pwErr').textContent =
+            '✕  رمز وارد شده اشتباه است. لطفاً دوباره تلاش کنید.';
+
         document.getElementById('pwInput').value = '';
+
         document.getElementById('pwInput').focus();
+
         return;
     }
-    state[mState.profId].locked = (mState.action === 'submit');
+
+    state[mState.profId].locked =
+        (mState.action === 'submit');
+
     closeModal();
+
     refreshCard(mState.profId);
+
     updateSummary();
-    if (mState.action === 'submit') {
-        showSync('saving', 'در حال ذخیره…');
-        try {
-            await dbUpsert(mState.profId);
-            showSync('saved', 'ذخیره شد ✓');
-        } catch(e) {
-            showSync('error', 'خطا در ذخیره‌سازی');
-            console.error(e);
-        }
-    } else {
-        try { await dbUpsert(mState.profId); } catch(e) { console.error(e); }
-    }
+
+    saveStateToURL();
+
+    showSync('saved', 'ذخیره شد ✓');
 }
 
 document.getElementById('pwInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter')  confirmPw();
-    if (e.key === 'Escape') closeModal();
+
+    if (e.key === 'Enter') {
+        confirmPw();
+    }
+
+    if (e.key === 'Escape') {
+        closeModal();
+    }
 });
+
 document.getElementById('overlay').addEventListener('click', e => {
-    if (e.target === e.currentTarget) closeModal();
+
+    if (e.target === e.currentTarget) {
+        closeModal();
+    }
 });
 
 /* ══════════════════════════════════════════
    SUMMARY
 ══════════════════════════════════════════ */
+
 function updateSummary() {
-    document.getElementById('summaryGrid').innerHTML = TIME_SLOTS.map((t,i) => {
+
+    document.getElementById('summaryGrid').innerHTML =
+        TIME_SLOTS.map((t,i) => {
+
         const entries = PROFESSORS
             .map(p => ({ p, st: state[p.id] }))
             .filter(({ st }) => st.sel.includes(i));
+
         const html = entries.length === 0
             ? '<span class="sum-none">هنوز انتخابی ثبت نشده</span>'
-            : entries.map(({ p, st }) =>
-                `<span class="sum-entry ${st.locked?'confirmed':''}">
-                    ${st.locked?'✓ ':'◌ '}${p.name} &ndash; ${p.role}
-                 </span>`).join('');
-        return `<div class="sum-slot">
+            : entries.map(({ p, st }) => `
+                <span class="sum-entry ${st.locked?'confirmed':''}">
+                    ${st.locked?'✓ ':'◌ '}
+                    ${p.name} &ndash; ${p.role}
+                </span>
+            `).join('');
+
+        return `
+        <div class="sum-slot">
             <div class="sum-slot-time">${t}</div>
             <div class="sum-entries">${html}</div>
-        </div>`;
+        </div>
+        `;
     }).join('');
 }
 
 /* ══════════════════════════════════════════
-   ADMIN PANEL  (A + D + R simultaneously)
+   ADMIN PANEL
 ══════════════════════════════════════════ */
+
 const ADMIN_PW = 'daneshpourreset';
+
 const keysHeld = new Set();
 
 document.addEventListener('keydown', e => {
+
     keysHeld.add(e.key.toUpperCase());
-    if (keysHeld.has('A') && keysHeld.has('D') && keysHeld.has('R')) {
+
+    if (
+        keysHeld.has('A') &&
+        keysHeld.has('D') &&
+        keysHeld.has('R')
+    ) {
         keysHeld.clear();
+
         openAdminModal();
     }
 });
-document.addEventListener('keyup', e => keysHeld.delete(e.key.toUpperCase()));
+
+document.addEventListener('keyup', e => {
+    keysHeld.delete(e.key.toUpperCase());
+});
 
 function openAdminModal() {
+
     document.getElementById('adminPwInput').value = '';
+
     document.getElementById('adminPwErr').textContent = '';
+
     document.getElementById('adminOverlay').classList.add('show');
-    setTimeout(() => document.getElementById('adminPwInput').focus(), 120);
+
+    setTimeout(() => {
+        document.getElementById('adminPwInput').focus();
+    }, 120);
 }
 
 function closeAdminModal() {
     document.getElementById('adminOverlay').classList.remove('show');
 }
 
-async function confirmAdminReset() {
-    const pw = document.getElementById('adminPwInput').value.trim();
+function confirmAdminReset() {
+
+    const pw =
+        document.getElementById('adminPwInput').value.trim();
+
     if (pw !== ADMIN_PW) {
-        document.getElementById('adminPwErr').textContent = '✕  رمز اشتباه است.';
+
+        document.getElementById('adminPwErr').textContent =
+            '✕  رمز اشتباه است.';
+
         document.getElementById('adminPwInput').value = '';
+
         document.getElementById('adminPwInput').focus();
+
         return;
     }
+
     closeAdminModal();
-    document.getElementById('loadingOverlay').classList.remove('hidden');
-    try {
-        // Delete all rows from Supabase
-        await fetch(API + '?prof_id=neq.____none____', {
-            method: 'DELETE',
-            headers
-        });
-        // Reset in-memory state
-        PROFESSORS.forEach(p => { state[p.id] = { sel: [], locked: false }; });
-        renderProfessors();
-        updateSummary();
-        showSync('saved', 'همه اطلاعات پاک شد ✓');
-    } catch(e) {
-        showSync('error', 'خطا در پاک‌سازی');
-        console.error(e);
-    }
-    document.getElementById('loadingOverlay').classList.add('hidden');
+
+    PROFESSORS.forEach(p => {
+
+        state[p.id] = {
+            sel: [],
+            locked: false
+        };
+    });
+
+    renderProfessors();
+
+    updateSummary();
+
+    saveStateToURL();
+
+    showSync('saved', 'همه اطلاعات پاک شد ✓');
 }
 
 document.getElementById('adminPwInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter')  confirmAdminReset();
-    if (e.key === 'Escape') closeAdminModal();
+
+    if (e.key === 'Enter') {
+        confirmAdminReset();
+    }
+
+    if (e.key === 'Escape') {
+        closeAdminModal();
+    }
 });
+
 document.getElementById('adminOverlay').addEventListener('click', e => {
-    if (e.target === e.currentTarget) closeAdminModal();
+
+    if (e.target === e.currentTarget) {
+        closeAdminModal();
+    }
 });
 
 /* ══════════════════════════════════════════
-   INIT — load from Supabase on page open
+   INIT
 ══════════════════════════════════════════ */
-async function init() {
-    try {
-        const rows = await dbLoad();
-        rows.forEach(row => {
-            if (state[row.prof_id]) {
-                state[row.prof_id].sel    = row.selected_slots || [];
-                state[row.prof_id].locked = row.locked || false;
-            }
-        });
-    } catch(e) {
-        console.error('بارگذاری اطلاعات با خطا مواجه شد:', e);
-    }
+
+function init() {
+
+    loadStateFromURL();
+
     renderSlotsDisplay();
+
     renderProfessors();
+
     updateSummary();
-    document.getElementById('loadingOverlay').classList.add('hidden');
+
+    document
+        .getElementById('loadingOverlay')
+        .classList
+        .add('hidden');
 }
 
 init();
